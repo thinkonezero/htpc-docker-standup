@@ -15,6 +15,10 @@ https://help.ubuntu.com/community/Fstab#ntfs
 `sudo mkdir /media/Media` - make the mount point
 Add to `/etc/fstab`: `UUID=BC6617A366175D88 /media/Media ntfs-3g uid=1000,gid=1000,dmask=022,fmask=133 0 0`
 
+#Step 3
+Setup Samba Share (to access media outside of HTPC)
+https://help.ubuntu.com/community/How%20to%20Create%20a%20Network%20Share%20Via%20Samba%20Via%20CLI%20%28Command-line%20interface/Linux%20Terminal%29%20-%20Uncomplicated%2C%20Simple%20and%20Brief%20Way%21
+
 #step 3
 Remove Old Docker
 Pre-Reqs for Media Box (https://github.com/phikai/mediabox#installation)
