@@ -167,3 +167,20 @@ services:
             - '/etc/localtime:/etc/localtime:ro'
         depends_on:
             - plex
+
+    # ----------------------------------------
+    # OMBI
+    # ----------------------------------------
+    ombi:
+        image: linuxserver/ombi
+        container_name: ombi
+        restart: unless-stopped
+        network_mode: "bridge"
+        ports:
+            - '${IP_ADDRESS}:3579:3579'
+        environment:
+            - PUID=${PUID}
+            - PGID=${PGID}
+        volumes:
+            - './ombi:/config'
+            - '/etc/localtime:/etc/localtime:ro'
