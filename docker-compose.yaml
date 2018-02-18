@@ -109,3 +109,23 @@ services:
             - '/media/Media/Media/TVShows:/tv'
             - '/media/Media/Media/Kid TV:/kidtv'
             - '/etc/localtime:/etc/localtime:ro'
+
+    # ----------------------------------------
+    # COUCHPOTATO
+    # ----------------------------------------
+    couchpotato:
+        image: linuxserver/couchpotato
+        container_name: couchpotato
+        restart: unless-stopped
+        network_mode: "bridge"
+        ports:
+            - '${IP_ADDRESS}:5050:5050'
+        environment:
+            - PUID=${PUID}
+            - PGID=${PGID}
+        volumes:
+            - './couchpotato:/config'
+            - '/media/Media/Torrents/Completed:/downloads:shared'
+            - '/media/Media/Media/Movies:/movies'
+            - '/media/Media/Media/Kid Movies:/kidmovies'
+            - '/etc/localtime:/etc/localtime:ro'
