@@ -27,3 +27,6 @@ https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-using-the-reposi
 Install Docker Compose
 https://docs.docker.com/compose/install/#install-compose
 
+
+This thread is GOLD: https://lime-technology.com/forums/topic/44108-support-binhex-general/?tab=comments#comment-433613
+

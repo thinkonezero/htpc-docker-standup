@@ -129,3 +129,21 @@ services:
             - '/media/Media/Media/Movies:/movies'
             - '/media/Media/Media/Kid Movies:/kidmovies'
             - '/etc/localtime:/etc/localtime:ro'
+
+    # ----------------------------------------
+    # JACKETT
+    # ----------------------------------------
+    jackett:
+        image: linuxserver/jackett
+        container_name: jackett
+        restart: unless-stopped
+        network_mode: "bridge"
+        ports:
+            - '${IP_ADDRESS}:9117:9117'
+        environment:
+            - PUID=${PUID}
+            - PGID=${PGID}
+        volumes:
+            - './jackett:/config'
+            - '/media/Media/Torrents/Completed:/downloads'
+            - '/etc/localtime:/etc/localtime:ro'
