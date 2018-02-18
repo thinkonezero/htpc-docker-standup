@@ -11,7 +11,7 @@
 ##
 ## Have docker-compose.yml and .env in the same directory to launch the stack
 
-version: '1'
+version: '2'
 
 ######################
 # SERVICES TO LAUNCH #
@@ -38,7 +38,6 @@ services:
             - '${IP_ADDRESS}:32413:32413/udp'
             - '${IP_ADDRESS}:32414:32414/udp'
         environment:
-            - PLEX_CLAIM=${PMSTOKEN}
             - ADVERTISE_IP=http://${IP_ADDRESS}:32400/
             - ALLOWED_NETWORKS=${CIDR_ADDRESS}
             - PLEX_UID=${PUID}
@@ -47,6 +46,8 @@ services:
         volumes:
             - './plex:/config'
             - './plex/transcode:/transcode'
-            - './content/tv:/data/tvshows'
-            - './content/movies:/data/movies'
+            - '/media/Media/Media/Movies:/data/movies'
+            - '/media/Media/Media/TVShows/:/data/tvshows'
+            - '/media/Media/Media/Kid Movies:/data/kidmovies'
+            - '/media/Media/Media/Kid TV/:/data/kidtvshows'
             - '/etc/localtime:/etc/localtime:ro'
