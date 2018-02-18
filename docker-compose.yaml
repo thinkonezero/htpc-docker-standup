@@ -48,9 +48,9 @@ services:
             - './plex:/config'
             - './plex/transcode:/transcode'
             - '/media/Media/Media/Movies:/data/movies'
-            - '/media/Media/Media/TVShows/:/data/tvshows'
+            - '/media/Media/Media/TVShows:/data/tvshows'
             - '/media/Media/Media/Kid Movies:/data/kidmovies'
-            - '/media/Media/Media/Kid TV/:/data/kidtvshows'
+            - '/media/Media/Media/Kid TV:/data/kidtvshows'
             - '/etc/localtime:/etc/localtime:ro'
 
     # ----------------------------------------
@@ -88,4 +88,24 @@ services:
         volumes:
             - '/media/Media/Torrents:/data'
             - './delugevpn/config:/config'
+            - '/etc/localtime:/etc/localtime:ro'
+
+    # ----------------------------------------
+    # SONARR
+    # ----------------------------------------
+    sonarr:
+        image: linuxserver/sonarr
+        container_name: sonarr
+        restart: unless-stopped
+        network_mode: "bridge"
+        ports:
+            - '${IP_ADDRESS}:8989:8989'
+        environment:
+            - PUID=${PUID}
+            - PGID=${PGID}
+        volumes:
+            - './sonarr:/config'
+            - '/media/Media/Torrents/Completed:/downloads'
+            - '/media/Media/Media/TVShows:/tv'
+            - '/media/Media/Media/Kid TV:/kidtv'
             - '/etc/localtime:/etc/localtime:ro'
