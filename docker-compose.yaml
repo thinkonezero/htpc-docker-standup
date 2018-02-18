@@ -147,3 +147,23 @@ services:
             - './jackett:/config'
             - '/media/Media/Torrents/Completed:/downloads'
             - '/etc/localtime:/etc/localtime:ro'
+
+    # ----------------------------------------
+    # PLEXPY
+    # ----------------------------------------
+    plexpy:
+        image: linuxserver/plexpy
+        container_name: plexpy
+        restart: unless-stopped
+        network_mode: "bridge"
+        ports:
+            - '${IP_ADDRESS}:8181:8181'
+        environment:
+            - PUID=${PUID}
+            - PGID=${PGID}
+        volumes:
+            - './plexpy:/config'
+            - './plex/Library/Application Support/Plex Media Server/Logs:/logs:ro'
+            - '/etc/localtime:/etc/localtime:ro'
+        depends_on:
+            - plex
