@@ -105,7 +105,7 @@ services:
             - PGID=${PGID}
         volumes:
             - './sonarr:/config'
-            - '/media/Media/Torrents/Completed:/downloads'
+            - '/media/Media/Torrents/Completed:/data/Completed'
             - '/media/Media/Media/TVShows:/tv'
             - '/media/Media/Media/Kid TV:/kidtv'
             - '/etc/localtime:/etc/localtime:ro'
