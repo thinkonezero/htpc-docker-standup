@@ -234,3 +234,19 @@ services:
             - '/proc:/host/proc:ro'
             - '/sys:/host/sys:ro'
             - '/var/run/docker.sock:/var/run/docker.sock'
+
+    # ----------------------------------------
+    # MUXIMUX
+    # ----------------------------------------
+    muximux:
+        image: linuxserver/muximux
+        container_name: muximux
+        restart: unless-stopped
+        network_mode: "bridge"
+        ports:
+            - '${IP_ADDRESS}:80:8080'
+        environment:
+            - PUID=${PUID}
+            - PGID=${PGID}
+        volumes:
+            - './muximux:/config'
