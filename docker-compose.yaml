@@ -288,8 +288,8 @@ services:
         volumes:
             - './nginx-proxy/etc/nginx/vhost.d:/etc/nginx/vhost.d'
             - './nginx-proxy/usr/share/nginx/html:/usr/share/nginx/html'
-            - '/var/run/docker.sock:/tmp/docker.sock:ro'
             - './nginx-proxy/etc/nginx/certs:/etc/nginx/certs'
+            - '/var/run/docker.sock:/tmp/docker.sock:ro'
 
     # ----------------------------------------
     # LETS ENCRYPT
