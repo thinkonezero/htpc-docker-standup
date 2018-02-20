@@ -43,6 +43,10 @@ services:
             - ALLOWED_NETWORKS=${CIDR_ADDRESS}
             - PLEX_UID=${PUID}
             - PLEX_GID=${PGID}
+            - VIRTUAL_HOST=plex.htpc.aphikaia.com
+            - VIRTUAL_PORT=32400
+            - LETSENCRYPT_HOST=plex.htpc.aphikaia.com
+            - LETSENCRYPT_EMAIL=kai@thinkonezero.com
         hostname: ${HOSTNAME}
         volumes:
             - './plex:/config'
