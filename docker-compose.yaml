@@ -1,6 +1,6 @@
 ##
 ## -------------------------
-## |   M E D I A B O X     |
+## | H T P C - D O C K E R |
 ## -------------------------
 ##
 ## Container based media tools configuration
@@ -21,6 +21,7 @@ services:
 
     # ----------------------------------------
     # PLEX
+    # Robust Media Server
     # ----------------------------------------
     plex:
         container_name: plex
