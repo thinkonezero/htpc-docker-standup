@@ -304,7 +304,6 @@ services:
             - LETSENCRYPT_EMAIL=kai@thinkonezero.com
         volumes:
             - './duplicati:/config'
-            - './duplicati/backups:/backups'
             - '/media/Media/Media:/media'
             - '/etc/localtime:/etc/localtime:ro'
 

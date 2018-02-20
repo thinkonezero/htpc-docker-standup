@@ -34,3 +34,4 @@ Removing Old Torrents: https://www.cuttingcords.com/home/2015/2/4/auto-deleting-
 
 Sonarr Series Folders: https://forums.sonarr.tv/t/adding-new-series-path-issues/2751/2
 
+Encoding of the Portainer Password (with auth): https://github.com/portainer/portainer/issues/1506
