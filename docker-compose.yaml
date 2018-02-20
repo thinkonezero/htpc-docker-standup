@@ -43,10 +43,10 @@ services:
             - ALLOWED_NETWORKS=${CIDR_ADDRESS}
             - PLEX_UID=${PUID}
             - PLEX_GID=${PGID}
-            - VIRTUAL_HOST=plex.htpc.aphikaia.com
+            - VIRTUAL_HOST=plex.${DOMAIN}
             - VIRTUAL_PORT=32400
-            - LETSENCRYPT_HOST=plex.htpc.aphikaia.com
-            - LETSENCRYPT_EMAIL=kai@thinkonezero.com
+            - LETSENCRYPT_HOST=plex.${DOMAIN}
+            - LETSENCRYPT_EMAIL=${EMAIL}
         hostname: ${HOSTNAME}
         volumes:
             - './plex:/config'
@@ -89,10 +89,10 @@ services:
             - DEBUG=false
             - PUID=${PUID}
             - PGID=${PGID}
-            - VIRTUAL_HOST=deluge.htpc.aphikaia.com
+            - VIRTUAL_HOST=deluge.${DOMAIN}
             - VIRTUAL_PORT=8112
-            - LETSENCRYPT_HOST=deluge.htpc.aphikaia.com
-            - LETSENCRYPT_EMAIL=kai@thinkonezero.com
+            - LETSENCRYPT_HOST=deluge.${DOMAIN}
+            - LETSENCRYPT_EMAIL=${EMAIL}
         volumes:
             - '/media/Media/Torrents:/data'
             - './delugevpn/config:/config'
@@ -111,9 +111,9 @@ services:
         environment:
             - PUID=${PUID}
             - PGID=${PGID}
-            - VIRTUAL_HOST=sonarr.htpc.aphikaia.com
-            - LETSENCRYPT_HOST=sonarr.htpc.aphikaia.com
-            - LETSENCRYPT_EMAIL=kai@thinkonezero.com
+            - VIRTUAL_HOST=sonarr.${DOMAIN}
+            - LETSENCRYPT_HOST=sonarr.${DOMAIN}
+            - LETSENCRYPT_EMAIL=${EMAIL}
         volumes:
             - './sonarr:/config'
             - '/media/Media/Torrents/Completed:/data/Completed'
@@ -134,9 +134,9 @@ services:
         environment:
             - PUID=${PUID}
             - PGID=${PGID}
-            - VIRTUAL_HOST=couchpotato.htpc.aphikaia.com
-            - LETSENCRYPT_HOST=couchpotato.htpc.aphikaia.com
-            - LETSENCRYPT_EMAIL=kai@thinkonezero.com
+            - VIRTUAL_HOST=couchpotato.${DOMAIN}
+            - LETSENCRYPT_HOST=couchpotato.${DOMAIN}
+            - LETSENCRYPT_EMAIL=${EMAIL}
         volumes:
             - './couchpotato:/config'
             - '/media/Media/Torrents/Completed:/downloads:shared'
@@ -157,9 +157,9 @@ services:
         environment:
             - PUID=${PUID}
             - PGID=${PGID}
-            - VIRTUAL_HOST=jackett.htpc.aphikaia.com
-            - LETSENCRYPT_HOST=jackett.htpc.aphikaia.com
-            - LETSENCRYPT_EMAIL=kai@thinkonezero.com
+            - VIRTUAL_HOST=jackett.${DOMAIN}
+            - LETSENCRYPT_HOST=jackett.${DOMAIN}
+            - LETSENCRYPT_EMAIL=${EMAIL}
         volumes:
             - './jackett:/config'
             - '/media/Media/Torrents/Completed:/downloads'
@@ -178,9 +178,9 @@ services:
         environment:
             - PUID=${PUID}
             - PGID=${PGID}
-            - VIRTUAL_HOST=plexpy.htpc.aphikaia.com
-            - LETSENCRYPT_HOST=plexpy.htpc.aphikaia.com
-            - LETSENCRYPT_EMAIL=kai@thinkonezero.com
+            - VIRTUAL_HOST=plexpy.${DOMAIN}
+            - LETSENCRYPT_HOST=plexpy.${DOMAIN}
+            - LETSENCRYPT_EMAIL=${EMAIL}
         volumes:
             - './plexpy:/config'
             - './plex/Library/Application Support/Plex Media Server/Logs:/logs:ro'
@@ -201,9 +201,9 @@ services:
         environment:
             - PUID=${PUID}
             - PGID=${PGID}
-            - VIRTUAL_HOST=request.htpc.aphikaia.com
-            - LETSENCRYPT_HOST=request.htpc.aphikaia.com
-            - LETSENCRYPT_EMAIL=kai@thinkonezero.com
+            - VIRTUAL_HOST=request.${DOMAIN}
+            - LETSENCRYPT_HOST=request.${DOMAIN}
+            - LETSENCRYPT_EMAIL=${EMAIL}
         volumes:
             - './ombi:/config'
             - '/etc/localtime:/etc/localtime:ro'
@@ -221,9 +221,9 @@ services:
         environment:
             - PUID=${PUID}
             - PGID=${PGID}
-            - VIRTUAL_HOST=portainer.htpc.aphikaia.com
-            - LETSENCRYPT_HOST=portainer.htpc.aphikaia.com
-            - LETSENCRYPT_EMAIL=kai@thinkonezero.com
+            - VIRTUAL_HOST=portainer.${DOMAIN}
+            - LETSENCRYPT_HOST=portainer.${DOMAIN}
+            - LETSENCRYPT_EMAIL=${EMAIL}
         volumes:
             - './portainer:/data'
             - '/var/run/docker.sock:/var/run/docker.sock'
@@ -257,9 +257,9 @@ services:
         environment:
             - PUID=${PUID}
             - PGID=${PGID}
-            - VIRTUAL_HOST=netdata.htpc.aphikaia.com
-            - LETSENCRYPT_HOST=netdata.htpc.aphikaia.com
-            - LETSENCRYPT_EMAIL=kai@thinkonezero.com
+            - VIRTUAL_HOST=netdata.${DOMAIN}
+            - LETSENCRYPT_HOST=netdata.${DOMAIN}
+            - LETSENCRYPT_EMAIL=${EMAIL}
         cap_add:
             - SYS_PTRACE
         volumes:
@@ -280,9 +280,9 @@ services:
         environment:
             - PUID=${PUID}
             - PGID=${PGID}
-            - VIRTUAL_HOST=manage.htpc.aphikaia.com
-            - LETSENCRYPT_HOST=manage.htpc.aphikaia.com
-            - LETSENCRYPT_EMAIL=kai@thinkonezero.com
+            - VIRTUAL_HOST=manage.${DOMAIN}
+            - LETSENCRYPT_HOST=manage.${DOMAIN}
+            - LETSENCRYPT_EMAIL=${EMAIL}
         volumes:
             - './muximux:/config'
 
@@ -299,9 +299,9 @@ services:
         environment:
             - PUID=${PUID}
             - PGID=${PGID}
-            - VIRTUAL_HOST=duplicati.htpc.aphikaia.com
-            - LETSENCRYPT_HOST=duplicati.htpc.aphikaia.com
-            - LETSENCRYPT_EMAIL=kai@thinkonezero.com
+            - VIRTUAL_HOST=duplicati.${DOMAIN}
+            - LETSENCRYPT_HOST=duplicati.${DOMAIN}
+            - LETSENCRYPT_EMAIL=${EMAIL}
         volumes:
             - './duplicati:/config'
             - '/media/Media/Media:/media'
