@@ -220,7 +220,7 @@ services:
             - './portainer:/data'
             - '/var/run/docker.sock:/var/run/docker.sock'
             - '/etc/localtime:/etc/localtime:ro'
-        command: ${PORTAINERSTYLE} -H unix:///var/run/docker.sock
+        command: --admin-password "$2y$05$/w17ylCmg3CeLQvDjr5v9.dnUB5pWLrW6U9GuKsbjjb8LKdIA7zT6" -H unix:///var/run/docker.sock
 
     # ----------------------------------------
     # WATCHTOWER
