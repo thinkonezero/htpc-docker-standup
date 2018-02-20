@@ -276,8 +276,14 @@ services:
     # ----------------------------------------
     nginx-proxy:
         image: jwilder/nginx-proxy:alpine
+        container_name: nginx-proxy
+        restart: unless-stopped
+        network_mode: "bridge"
         ports:
             - "80:80"
+        environment:
+            - PUID=${PUID}
+            - PGID=${PGID}
         volumes:
             - './nginx-proxy/etc/nginx/vhost.d:/etc/nginx/vhost.d'
             - './nginx-proxy/usr/share/nginx/html:/usr/share/nginx/html'
