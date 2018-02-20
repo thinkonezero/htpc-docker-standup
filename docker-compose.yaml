@@ -265,6 +265,7 @@ services:
         volumes:
             - '/proc:/host/proc:ro'
             - '/sys:/host/sys:ro'
+            - '/etc/localtime:/etc/localtime:ro'
             - '/var/run/docker.sock:/var/run/docker.sock'
 
     # ----------------------------------------
@@ -285,6 +286,7 @@ services:
             - LETSENCRYPT_EMAIL=${EMAIL}
         volumes:
             - './muximux:/config'
+            - '/etc/localtime:/etc/localtime:ro'
 
     # ----------------------------------------
     # DUPLICATI
@@ -325,6 +327,7 @@ services:
             - './nginx-proxy/etc/nginx/vhost.d:/etc/nginx/vhost.d'
             - './nginx-proxy/usr/share/nginx/html:/usr/share/nginx/html'
             - './letsencrypt/certs:/etc/nginx/certs:ro'
+            - '/etc/localtime:/etc/localtime:ro'
             - '/var/run/docker.sock:/tmp/docker.sock:ro'
 
     # ----------------------------------------
@@ -340,6 +343,7 @@ services:
             - PGID=${PGID}
         volumes:
             - './letsencrypt/certs:/etc/nginx/certs:rw'
+            - '/etc/localtime:/etc/localtime:ro'
             - '/var/run/docker.sock:/var/run/docker.sock:ro'
         volumes_from:
             - 'nginx-proxy'
