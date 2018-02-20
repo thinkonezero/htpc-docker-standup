@@ -249,6 +249,8 @@ services:
             - PUID=${PUID}
             - PGID=${PGID}
             - VIRTUAL_HOST=manage.htpc.aphikaia.com
+            - LETSENCRYPT_HOST=manage.htpc.aphikaia.com
+            - LETSENCRYPT_EMAIL=kai.armstrong@gmail.com
         volumes:
             - './muximux:/config'
 
