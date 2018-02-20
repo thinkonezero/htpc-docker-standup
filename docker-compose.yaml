@@ -248,6 +248,7 @@ services:
         environment:
             - PUID=${PUID}
             - PGID=${PGID}
+            - VIRTUAL_HOST=manage.htpc.aphikaia.com
         volumes:
             - './muximux:/config'
 
@@ -269,3 +270,16 @@ services:
             - './duplicati/backups:/backups'
             - '/media/Media/Media:/media'
             - '/etc/localtime:/etc/localtime:ro'
+
+    # ----------------------------------------
+    # NGINX-PROXY
+    # ----------------------------------------
+    nginx-proxy:
+        image: jwilder/nginx-proxy:alpine
+        ports:
+            - "80:80"
+        volumes:
+            - './nginx-proxy/etc/nginx/vhost.d:/etc/nginx/vhost.d'
+            - './nginx-proxy/usr/share/nginx/html:/usr/share/nginx/html'
+            - '/var/run/docker.sock:/tmp/docker.sock:ro'
+            - './nginx-proxy/etc/nginx/certs:/etc/nginx/certs'
