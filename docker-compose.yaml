@@ -250,3 +250,22 @@ services:
             - PGID=${PGID}
         volumes:
             - './muximux:/config'
+
+    # ----------------------------------------
+    # DUPLICATI
+    # ----------------------------------------
+    duplicati:
+        image: linuxserver/duplicati
+        container_name: duplicati
+        restart: unless-stopped
+        network_mode: "bridge"
+        ports:
+            - '${IP_ADDRESS}:8200:8200'
+        environment:
+            - PUID=${PUID}
+            - PGID=${PGID}
+        volumes:
+            - './duplicati:/config'
+            - './duplicati/backups:/backups'
+            - '${PWD}:/source'
+            - '/etc/localtime:/etc/localtime:ro'
