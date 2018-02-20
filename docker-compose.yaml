@@ -170,6 +170,9 @@ services:
         environment:
             - PUID=${PUID}
             - PGID=${PGID}
+            - VIRTUAL_HOST=plexpy.htpc.aphikaia.com
+            - LETSENCRYPT_HOST=plexpy.htpc.aphikaia.com
+            - LETSENCRYPT_EMAIL=kai@thinkonezero.com
         volumes:
             - './plexpy:/config'
             - './plex/Library/Application Support/Plex Media Server/Logs:/logs:ro'
