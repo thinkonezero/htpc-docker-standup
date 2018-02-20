@@ -43,10 +43,10 @@ services:
             - ALLOWED_NETWORKS=${CIDR_ADDRESS}
             - PLEX_UID=${PUID}
             - PLEX_GID=${PGID}
-            - VIRTUAL_HOST=plex.${DOMAIN}
-            - VIRTUAL_PORT=32400
-            - LETSENCRYPT_HOST=plex.${DOMAIN}
-            - LETSENCRYPT_EMAIL=${EMAIL}
+            #- VIRTUAL_HOST=plex.${DOMAIN}
+            #- VIRTUAL_PORT=32400
+            #- LETSENCRYPT_HOST=plex.${DOMAIN}
+            #- LETSENCRYPT_EMAIL=${EMAIL}
         hostname: ${HOSTNAME}
         volumes:
             - './plex:/config'
