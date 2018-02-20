@@ -267,5 +267,5 @@ services:
         volumes:
             - './duplicati:/config'
             - './duplicati/backups:/backups'
-            - '${PWD}:/source'
+            - '/media/Media/Media:/media'
             - '/etc/localtime:/etc/localtime:ro'
