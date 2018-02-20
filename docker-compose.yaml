@@ -105,7 +105,7 @@ services:
             - PGID=${PGID}
             - VIRTUAL_HOST=sonarr.htpc.aphikaia.com
             - LETSENCRYPT_HOST=sonarr.htpc.aphikaia.com
-            - LETSENCRYPT_EMAIL=kai.armstrong@gmail.com
+            - LETSENCRYPT_EMAIL=kai@thinkonezero.com
         volumes:
             - './sonarr:/config'
             - '/media/Media/Torrents/Completed:/data/Completed'
@@ -128,7 +128,7 @@ services:
             - PGID=${PGID}
             - VIRTUAL_HOST=couchpotato.htpc.aphikaia.com
             - LETSENCRYPT_HOST=couchpotato.htpc.aphikaia.com
-            - LETSENCRYPT_EMAIL=kai.armstrong@gmail.com
+            - LETSENCRYPT_EMAIL=kai@thinkonezero.com
         volumes:
             - './couchpotato:/config'
             - '/media/Media/Torrents/Completed:/downloads:shared'
@@ -151,7 +151,7 @@ services:
             - PGID=${PGID}
             - VIRTUAL_HOST=jackett.htpc.aphikaia.com
             - LETSENCRYPT_HOST=jackett.htpc.aphikaia.com
-            - LETSENCRYPT_EMAIL=kai.armstrong@gmail.com
+            - LETSENCRYPT_EMAIL=kai@thinkonezero.com
         volumes:
             - './jackett:/config'
             - '/media/Media/Torrents/Completed:/downloads'
@@ -192,7 +192,7 @@ services:
             - PGID=${PGID}
             - VIRTUAL_HOST=request.htpc.aphikaia.com
             - LETSENCRYPT_HOST=request.htpc.aphikaia.com
-            - LETSENCRYPT_EMAIL=kai.armstrong@gmail.com
+            - LETSENCRYPT_EMAIL=kai@thinkonezero.com
         volumes:
             - './ombi:/config'
             - '/etc/localtime:/etc/localtime:ro'
@@ -212,7 +212,7 @@ services:
             - PGID=${PGID}
             - VIRTUAL_HOST=portainer.htpc.aphikaia.com
             - LETSENCRYPT_HOST=portainer.htpc.aphikaia.com
-            - LETSENCRYPT_EMAIL=kai.armstrong@gmail.com
+            - LETSENCRYPT_EMAIL=kai@thinkonezero.com
         volumes:
             - './portainer:/data'
             - '/var/run/docker.sock:/var/run/docker.sock'
@@ -248,7 +248,7 @@ services:
             - PGID=${PGID}
             - VIRTUAL_HOST=netdata.htpc.aphikaia.com
             - LETSENCRYPT_HOST=netdata.htpc.aphikaia.com
-            - LETSENCRYPT_EMAIL=kai.armstrong@gmail.com
+            - LETSENCRYPT_EMAIL=kai@thinkonezero.com
         cap_add:
             - SYS_PTRACE
         volumes:
@@ -271,7 +271,7 @@ services:
             - PGID=${PGID}
             - VIRTUAL_HOST=manage.htpc.aphikaia.com
             - LETSENCRYPT_HOST=manage.htpc.aphikaia.com
-            - LETSENCRYPT_EMAIL=kai.armstrong@gmail.com
+            - LETSENCRYPT_EMAIL=kai@thinkonezero.com
         volumes:
             - './muximux:/config'
 
@@ -290,7 +290,7 @@ services:
             - PGID=${PGID}
             - VIRTUAL_HOST=duplicati.htpc.aphikaia.com
             - LETSENCRYPT_HOST=duplicati.htpc.aphikaia.com
-            - LETSENCRYPT_EMAIL=kai.armstrong@gmail.com
+            - LETSENCRYPT_EMAIL=kai@thinkonezero.com
         volumes:
             - './duplicati:/config'
             - './duplicati/backups:/backups'
