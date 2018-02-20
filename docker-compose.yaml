@@ -60,6 +60,7 @@ services:
 
     # ----------------------------------------
     # DELUGEVPN
+    # Deluge Torrent Client + PIA VPN
     # ----------------------------------------
     arch-delugevpn:
         image: binhex/arch-delugevpn
@@ -101,6 +102,7 @@ services:
 
     # ----------------------------------------
     # SONARR
+    # TV Series Management
     # ----------------------------------------
     sonarr:
         image: linuxserver/sonarr
@@ -124,6 +126,7 @@ services:
 
     # ----------------------------------------
     # COUCHPOTATO
+    # Movie Management
     # ----------------------------------------
     couchpotato:
         image: linuxserver/couchpotato
@@ -147,6 +150,7 @@ services:
 
     # ----------------------------------------
     # JACKETT
+    # RSS/TORZNAB Feed Creator
     # ----------------------------------------
     jackett:
         image: linuxserver/jackett
@@ -168,6 +172,7 @@ services:
 
     # ----------------------------------------
     # PLEXPY
+    # Monitoring Service for PLEX Usage
     # ----------------------------------------
     plexpy:
         image: linuxserver/plexpy
@@ -191,6 +196,7 @@ services:
 
     # ----------------------------------------
     # OMBI
+    # Request Service for Plex Content
     # ----------------------------------------
     ombi:
         image: linuxserver/ombi
@@ -211,6 +217,7 @@ services:
 
     # ----------------------------------------
     # PORTAINER
+    # Docker Container Management
     # ----------------------------------------
     portainer:
         image: portainer/portainer:latest
@@ -233,6 +240,7 @@ services:
 
     # ----------------------------------------
     # WATCHTOWER
+    # Automatic Update Service for Docker VMs
     # ----------------------------------------
     watchtower:
         image: v2tec/watchtower
@@ -247,6 +255,7 @@ services:
 
     # ----------------------------------------
     # NETDATA
+    # System Resource Monitoring Service
     # ----------------------------------------
     netdata:
         image: titpetric/netdata
@@ -271,6 +280,7 @@ services:
 
     # ----------------------------------------
     # MUXIMUX
+    # Web Frontend for HTPC Management
     # ----------------------------------------
     muximux:
         image: linuxserver/muximux
@@ -291,6 +301,7 @@ services:
 
     # ----------------------------------------
     # DUPLICATI
+    # Backup Software
     # ----------------------------------------
     duplicati:
         image: linuxserver/duplicati
@@ -312,6 +323,7 @@ services:
 
     # ----------------------------------------
     # NGINX-PROXY
+    # Pretty Hostname Support for Services
     # ----------------------------------------
     nginx-proxy:
         image: jwilder/nginx-proxy:alpine
@@ -333,6 +345,7 @@ services:
 
     # ----------------------------------------
     # LETS ENCRYPT
+    # SSL Support Companion for nginx-proxy
     # ----------------------------------------
     letsencrypt-nginx-proxy-companion:
         image: jrcs/letsencrypt-nginx-proxy-companion
