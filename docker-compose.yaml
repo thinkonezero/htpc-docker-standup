@@ -181,6 +181,9 @@ services:
         environment:
             - PUID=${PUID}
             - PGID=${PGID}
+            - VIRTUAL_HOST=request.htpc.aphikaia.com
+            - LETSENCRYPT_HOST=request.htpc.aphikaia.com
+            - LETSENCRYPT_EMAIL=kai.armstrong@gmail.com
         volumes:
             - './ombi:/config'
             - '/etc/localtime:/etc/localtime:ro'
