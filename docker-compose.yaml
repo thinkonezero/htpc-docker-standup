@@ -290,7 +290,7 @@ services:
         volumes:
             - './nginx-proxy/etc/nginx/vhost.d:/etc/nginx/vhost.d'
             - './nginx-proxy/usr/share/nginx/html:/usr/share/nginx/html'
-            - './nginx-proxy/etc/nginx/certs:/etc/nginx/certs'
+            - './letsencrypt/certs:/etc/nginx/certs:ro'
             - '/var/run/docker.sock:/tmp/docker.sock:ro'
 
     # ----------------------------------------
@@ -305,6 +305,7 @@ services:
             - PUID=${PUID}
             - PGID=${PGID}
         volumes:
+            - './letsencrypt/certs:/etc/nginx/certs:rw'
             - '/var/run/docker.sock:/var/run/docker.sock:ro'
         volumes_from:
             - 'nginx-proxy'
