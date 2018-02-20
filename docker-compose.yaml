@@ -26,7 +26,7 @@ services:
         container_name: plex
         image: plexinc/pms-docker:${PMSTAG}
         restart: unless-stopped
-        network_mode: "host"
+        network_mode: 'host'
         ports:
             - '${IP_ADDRESS}:32400:32400/tcp'
             - '${IP_ADDRESS}:3005:3005/tcp'
@@ -60,7 +60,7 @@ services:
         image: binhex/arch-delugevpn
         container_name: delugevpn
         restart: unless-stopped
-        network_mode: "bridge"
+        network_mode: 'bridge'
         ports:
             - '${IP_ADDRESS}:8112:8112'
             - '${IP_ADDRESS}:8118:8118'
@@ -97,7 +97,7 @@ services:
         image: linuxserver/sonarr
         container_name: sonarr
         restart: unless-stopped
-        network_mode: "bridge"
+        network_mode: 'bridge'
         ports:
             - '${IP_ADDRESS}:8989:8989'
         environment:
@@ -117,7 +117,7 @@ services:
         image: linuxserver/couchpotato
         container_name: couchpotato
         restart: unless-stopped
-        network_mode: "bridge"
+        network_mode: 'bridge'
         ports:
             - '${IP_ADDRESS}:5050:5050'
         environment:
@@ -137,7 +137,7 @@ services:
         image: linuxserver/jackett
         container_name: jackett
         restart: unless-stopped
-        network_mode: "bridge"
+        network_mode: 'bridge'
         ports:
             - '${IP_ADDRESS}:9117:9117'
         environment:
@@ -155,7 +155,7 @@ services:
         image: linuxserver/plexpy
         container_name: plexpy
         restart: unless-stopped
-        network_mode: "bridge"
+        network_mode: 'bridge'
         ports:
             - '${IP_ADDRESS}:8181:8181'
         environment:
@@ -175,7 +175,7 @@ services:
         image: linuxserver/ombi
         container_name: ombi
         restart: unless-stopped
-        network_mode: "bridge"
+        network_mode: 'bridge'
         ports:
             - '${IP_ADDRESS}:3579:3579'
         environment:
@@ -192,7 +192,7 @@ services:
         image: portainer/portainer:latest
         container_name: portainer
         restart: unless-stopped
-        network_mode: "bridge"
+        network_mode: 'bridge'
         ports:
             - '${IP_ADDRESS}:9000:9000'
         environment:
@@ -213,7 +213,7 @@ services:
         restart: unless-stopped
         environment:
             - TZ=${TZ}
-        network_mode: "bridge"
+        network_mode: 'bridge'
         volumes:
             - '/var/run/docker.sock:/var/run/docker.sock'
         command: portainer --schedule @midnight --cleanup
@@ -225,7 +225,7 @@ services:
         image: titpetric/netdata
         container_name: netdata
         restart: unless-stopped
-        network_mode: "bridge"
+        network_mode: 'bridge'
         ports:
             - '${IP_ADDRESS}:19999:19999'
         cap_add:
@@ -242,7 +242,7 @@ services:
         image: linuxserver/muximux
         container_name: muximux
         restart: unless-stopped
-        network_mode: "bridge"
+        network_mode: 'bridge'
         ports:
             - '${IP_ADDRESS}:8080:80'
         environment:
@@ -259,7 +259,7 @@ services:
         image: linuxserver/duplicati
         container_name: duplicati
         restart: unless-stopped
-        network_mode: "bridge"
+        network_mode: 'bridge'
         ports:
             - '${IP_ADDRESS}:8200:8200'
         environment:
@@ -278,9 +278,10 @@ services:
         image: jwilder/nginx-proxy:alpine
         container_name: nginx-proxy
         restart: unless-stopped
-        network_mode: "bridge"
+        network_mode: 'bridge'
         ports:
-            - "80:80"
+            - '80:80'
+            - '443:443'
         environment:
             - PUID=${PUID}
             - PGID=${PGID}
@@ -289,3 +290,19 @@ services:
             - './nginx-proxy/usr/share/nginx/html:/usr/share/nginx/html'
             - '/var/run/docker.sock:/tmp/docker.sock:ro'
             - './nginx-proxy/etc/nginx/certs:/etc/nginx/certs'
+
+    # ----------------------------------------
+    # LETS ENCRYPT
+    # ----------------------------------------
+    letsencrypt-nginx-proxy-companion:
+        image: jrcs/letsencrypt-nginx-proxy-companion
+        container_name: letsencrypt
+        restart: unless-stopped
+        network_mode: 'bridge'
+        environment:
+            - PUID=${PUID}
+            - PGID=${PGID}
+        volumes:
+            - '/var/run/docker.sock:/var/run/docker.sock:ro'
+        volumes_from:
+            - 'nginx-proxy'
