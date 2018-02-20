@@ -89,6 +89,10 @@ services:
             - DEBUG=false
             - PUID=${PUID}
             - PGID=${PGID}
+            - VIRTUAL_HOST=deluge.htpc.aphikaia.com
+            - VIRTUAL_PORT=8112
+            - LETSENCRYPT_HOST=deluge.htpc.aphikaia.com
+            - LETSENCRYPT_EMAIL=kai@thinkonezero.com
         volumes:
             - '/media/Media/Torrents:/data'
             - './delugevpn/config:/config'
