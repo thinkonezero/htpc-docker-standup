@@ -244,7 +244,7 @@ services:
         restart: unless-stopped
         network_mode: "bridge"
         ports:
-            - '${IP_ADDRESS}:8080:80'
+            - '${IP_ADDRESS}:80:80'
         environment:
             - PUID=${PUID}
             - PGID=${PGID}
