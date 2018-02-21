@@ -113,6 +113,7 @@ services:
             - VIRTUAL_HOST=sonarr.${DOMAIN}
             - LETSENCRYPT_HOST=sonarr.${DOMAIN}
             - LETSENCRYPT_EMAIL=${EMAIL}
+            - NETWORK_ACCESS=internal
         volumes:
             - './sonarr:/config'
             - '/media/Media/Torrents/Completed:/data/Completed'
