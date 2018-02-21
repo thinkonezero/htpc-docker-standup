@@ -39,3 +39,5 @@ Encoding of the Portainer Password (with auth): https://github.com/portainer/por
 Good for troubleshooting (opening shell in container): http://phase2.github.io/devtools/common-tasks/ssh-into-a-container/ and https://stackoverflow.com/a/30173220
 
 potential script to renew/copy Plex SSL: https://www.npcglib.org/~stathis/blog/2017/05/13/plex-media-server-over-https-with-letsencrypt-certificates/
+
+Plex Reverse Proxy issue: https://github.com/jwilder/nginx-proxy#multiple-networks
