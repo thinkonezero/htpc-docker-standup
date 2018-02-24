@@ -30,7 +30,7 @@ https://docs.docker.com/compose/install/#install-compose
 
 This thread is GOLD: https://lime-technology.com/forums/topic/44108-support-binhex-general/?tab=comments#comment-433613
 
-Removing Old Torrents: https://www.cuttingcords.com/home/2015/2/4/auto-deleting-finished-torrents-from-deluge
+Removing Old Torrents: https://www.cuttingcords.com/home/2015/2/4/auto-deleting-finished-torrents-from-deluge - DO THIS!!!
 
 Sonarr Series Folders: https://forums.sonarr.tv/t/adding-new-series-path-issues/2751/2
 
