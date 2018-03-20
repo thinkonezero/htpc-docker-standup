@@ -244,7 +244,7 @@ services:
         restart: unless-stopped
         environment:
             - TZ=${TZ}
-            - WATCHTOWER_NOTIFICATIONS=
+            - WATCHTOWER_NOTIFICATIONS=email
             - WATCHTOWER_NOTIFICATION_EMAIL_FROM=${SMTP_FROM}
             - WATCHTOWER_NOTIFICATION_EMAIL_TO=${EMAIL}
             - WATCHTOWER_NOTIFICATION_EMAIL_SERVER=${SMTP_SERVER}
