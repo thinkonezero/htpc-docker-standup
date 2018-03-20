@@ -244,6 +244,13 @@ services:
         restart: unless-stopped
         environment:
             - TZ=${TZ}
+            - WATCHTOWER_NOTIFICATIONS=
+            - WATCHTOWER_NOTIFICATION_EMAIL_FROM=${SMTP_FROM}
+            - WATCHTOWER_NOTIFICATION_EMAIL_TO=${EMAIL}
+            - WATCHTOWER_NOTIFICATION_EMAIL_SERVER=${SMTP_SERVER}
+            - WATCHTOWER_NOTIFICATION_EMAIL_SERVER_PORT=${SMTP_PORT}
+            - WATCHTOWER_NOTIFICATION_EMAIL_SERVER_USER=${SMTP_USER}
+            - WATCHTOWER_NOTIFICATION_EMAIL_SERVER_PASSWORD=${SMTP_PASS}
         network_mode: 'bridge'
         volumes:
             - '/var/run/docker.sock:/var/run/docker.sock'
