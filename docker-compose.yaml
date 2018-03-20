@@ -251,6 +251,7 @@ services:
             - WATCHTOWER_NOTIFICATION_EMAIL_SERVER_PORT=${SMTP_PORT}
             - WATCHTOWER_NOTIFICATION_EMAIL_SERVER_USER=${SMTP_USER}
             - WATCHTOWER_NOTIFICATION_EMAIL_SERVER_PASSWORD=${SMTP_PASS}
+            - WATCHTOWER_NOTIFICATION_EMAIL_SERVER_TLS_SKIP_VERIFY=true
         network_mode: 'bridge'
         volumes:
             - '/var/run/docker.sock:/var/run/docker.sock'
