@@ -254,6 +254,7 @@ services:
         network_mode: 'bridge'
         volumes:
             - '/var/run/docker.sock:/var/run/docker.sock'
+            - '/etc/ssl/certs:/etc/ssl/certs'
         command: portainer --schedule @midnight --cleanup
 
     # ----------------------------------------
