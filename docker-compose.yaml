@@ -167,11 +167,11 @@ services:
             - '/etc/localtime:/etc/localtime:ro'
 
     # ----------------------------------------
-    # PLEXPY
+    # TAUTULLI
     # Monitoring Service for PLEX Usage
     # ----------------------------------------
     plexpy:
-        image: linuxserver/plexpy
+        image: linuxserver/tautulli
         container_name: plexpy
         restart: unless-stopped
         network_mode: 'bridge'
