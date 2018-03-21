@@ -145,6 +145,30 @@ services:
             - '/etc/localtime:/etc/localtime:ro'
 
     # ----------------------------------------
+    # RADARR
+    # Movie Management
+    # ----------------------------------------
+    radarr:
+        image: linuxserver/radarr
+        container_name: radarr
+        restart: unless-stopped
+        network_mode: "bridge"
+        ports:
+            - '${IP_ADDRESS}:7878:7878'
+        environment:
+            - PUID=${PUID}
+            - PGID=${PGID}
+            - VIRTUAL_HOST=radarr.${DOMAIN}
+            - LETSENCRYPT_HOST=radarr.${DOMAIN}
+            - LETSENCRYPT_EMAIL=${EMAIL}
+        volumes:
+            - './radarr:/config'
+            - '/media/Media/Torrents/Completed:/downloads'
+            - '/media/Media/Media/Movies:/movies'
+            - '/media/Media/Media/Kid Movies:/kidmovies'
+            - '/etc/localtime:/etc/localtime:ro'
+
+    # ----------------------------------------
     # JACKETT
     # RSS/TORZNAB Feed Creator
     # ----------------------------------------
