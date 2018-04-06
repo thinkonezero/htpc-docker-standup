@@ -149,7 +149,8 @@ services:
     # RSS/TORZNAB Feed Creator
     # ----------------------------------------
     jackett:
-        image: linuxserver/jackett
+        #image: linuxserver/jackett
+        build: https://github.com/linuxserver/docker-jackett.git
         container_name: jackett
         restart: unless-stopped
         network_mode: 'bridge'
