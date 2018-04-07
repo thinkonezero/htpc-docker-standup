@@ -1,8 +1,40 @@
-# htpc-docker
-My HTPC Docker Configuration
+# HTPC Docker Standup
+This is a simple docker-compose configuration to standup a new HTPC. It's based on running on an Ubuntu server, but could easily be adapted for other opertaing systems with Docker support.
+
+It includes the following Services
+
+- [Plex Media Server](https://www.plex.tv/) - for managing media and serving files to Plex Clients
+- [Deluge](https://deluge-torrent.org/) + [Private Internet Access VPN](https://www.privateinternetaccess.com/pages/buy-vpn/toz) - for downloading torrents... "safely"
+- [Sonarr](https://sonarr.tv/) - for TV Series Management
+- [Radarr](https://radarr.video/) - for Movie Management
+- [Jackett](https://github.com/Jackett/Jackett) - for Torrent Tracker feeds
+- [Tautulli](http://tautulli.com/) - for Plex library statistics and usage
+- [Ombi](https://ombi.io/) - for requesting additional library content
+- [Portainer](https://portainer.io/) - for managing all of your Docker containers
+- [Watchtower](https://github.com/v2tec/watchtower) - for automatically updating running containers
+- [NetData](https://my-netdata.io/) - for system resource monitoring
+- [Muximux](https://github.com/mescon/Muximux) - for simple web based management
+- [Duplicati](https://www.duplicati.com/) - Backup Software to connect to your favorite provider
+- [Nginx Proxy](https://github.com/jwilder/nginx-proxy) + [Let's Encrypt](https://github.com/JrCs/docker-letsencrypt-nginx-proxy-companion) - for easily accessing services on SSL Enabled Hostnames
+
+This project was heavily inspired by the [MediaBox](https://github.com/tom472/mediabox) project... Many Thanks!
+
+##Known Issues
+1. Sometimes the Deluge + VPN Container disconnects and can't re-establish a forwarded port connection.
 
 
-#Step 1
+##Install Instructions
+
+###Prerequisites
+- [Ubuntu 16.04 LTS](https://www.ubuntu.com/)
+- [VPN Account from PIA](https://www.privateinternetaccess.com/pages/buy-vpn/toz)
+- [Git](https://git-scm.com/)
+- [Docker](https://www.docker.com/)
+- [Python 2.7](https://www.python.org/)
+- [Docker-Compose](https://docs.docker.com/compose/)
+
+###Server Configuration
+1. Step 1
 Install Ubuntu Server
 `sudo apt update` then `sudo apt upgrade`
 
@@ -28,6 +60,8 @@ Install Docker Compose
 https://docs.docker.com/compose/install/#install-compose
 
 
+
+##Thanks
 This thread is GOLD: https://lime-technology.com/forums/topic/44108-support-binhex-general/?tab=comments#comment-433613
 
 Removing Old Torrents: https://www.cuttingcords.com/home/2015/2/4/auto-deleting-finished-torrents-from-deluge - DO THIS!!!
@@ -41,3 +75,20 @@ Good for troubleshooting (opening shell in container): http://phase2.github.io/d
 potential script to renew/copy Plex SSL: https://www.npcglib.org/~stathis/blog/2017/05/13/plex-media-server-over-https-with-letsencrypt-certificates/
 
 Plex Reverse Proxy issue: https://github.com/jwilder/nginx-proxy#multiple-networks
+
+---
+
+If this project has helped you in anyway, and you'd like to say thanks...
+
+[![Donate](https://img.shields.io/badge/Donate-SquareCash-brightgreen.svg)](https://cash.me/$phikai)
+
+---
+# Disclaimer
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
