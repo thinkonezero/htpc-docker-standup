@@ -36,45 +36,31 @@ This project was heavily inspired by the [MediaBox](https://github.com/tom472/me
 - [Docker-Compose](https://docs.docker.com/compose/)
 
 ### Server Configuration
-1. Step 1
-Install Ubuntu Server
-`sudo apt update` then `sudo apt upgrade`
+1. [Install Ubuntu Server](https://tutorials.ubuntu.com/tutorial/tutorial-install-ubuntu-server) and get it updated - `sudo apt update` then `sudo apt upgrade`
 
-# Step 2
-Mount NTFS Drive w/ Appropriate Permissions
-https://askubuntu.com/questions/113733/how-do-i-correctly-mount-a-ntfs-partition-in-etc-fstab#comment684545_113746
-https://help.ubuntu.com/community/Fstab#ntfs
+2. If you have existing media on a separate NTFS formatted drive:
+ - Mount NTFS Drive w/ Appropriate Permissions, [Link 1](https://askubuntu.com/questions/113733/how-do-i-correctly-mount-a-ntfs-partition-in-etc-fstab#comment684545_113746)
+ - `sudo blkid` - Find the block ID of your media drive
+ - `sudo mkdir /media/Media` - make the mount point
+ - Add to `/etc/fstab`: `UUID=BC6617A366175D88 /media/Media ntfs-3g uid=1000,gid=1000,dmask=022,fmask=133 0 0`
 
-`sudo blkid` - Find the block ID of your media drive
-`sudo mkdir /media/Media` - make the mount point
-Add to `/etc/fstab`: `UUID=BC6617A366175D88 /media/Media ntfs-3g uid=1000,gid=1000,dmask=022,fmask=133 0 0`
+3. [Setup Samba Share](https://help.ubuntu.com/community/How%20to%20Create%20a%20Network%20Share%20Via%20Samba%20Via%20CLI%20%28Command-line%20interface/Linux%20Terminal%29%20-%20Uncomplicated%2C%20Simple%20and%20Brief%20Way%21) (to access media outside of HTPC)
 
-# Step 3
-Setup Samba Share (to access media outside of HTPC)
-https://help.ubuntu.com/community/How%20to%20Create%20a%20Network%20Share%20Via%20Samba%20Via%20CLI%20%28Command-line%20interface/Linux%20Terminal%29%20-%20Uncomplicated%2C%20Simple%20and%20Brief%20Way%21
+4. [Install Docker](https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-using-the-repository)
 
-# step 3
-Remove Old Docker
-Pre-Reqs for Media Box (https://github.com/phikai/mediabox#installation)
-Install Docker
-https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-using-the-repository
-Install Docker Compose
-https://docs.docker.com/compose/install/#install-compose
+5. [Install Docker Compose](https://docs.docker.com/compose/install/#install-compose)
 
 
 
-## Thanks
-This thread is GOLD: https://lime-technology.com/forums/topic/44108-support-binhex-general/?tab=comments#comment-433613
+## Tips and Tricks
 
-Removing Old Torrents: https://www.cuttingcords.com/home/2015/2/4/auto-deleting-finished-torrents-from-deluge - DO THIS!!!
+- [Deluge + PIA FAQ](https://lime-technology.com/forums/topic/44108-support-binhex-general/?tab=comments#comment-433613)
+- [Removing Old/Completed Torrents from Deluge](https://www.cuttingcords.com/home/2015/2/4/auto-deleting-finished-torrents-from-deluge)
+- [Create Series Folder in Sonarr](https://forums.sonarr.tv/t/adding-new-series-path-issues/2751/2)
+- [Proper Encoding of the Portainer Password](https://github.com/portainer/portainer/issues/1506)
+- Open Shell in a Container - [Link 1](http://phase2.github.io/devtools/common-tasks/ssh-into-a-container/), [Link 2](https://stackoverflow.com/a/30173220)
 
-Sonarr Series Folders: https://forums.sonarr.tv/t/adding-new-series-path-issues/2751/2
-
-Encoding of the Portainer Password (with auth): https://github.com/portainer/portainer/issues/1506
-
-Good for troubleshooting (opening shell in container): http://phase2.github.io/devtools/common-tasks/ssh-into-a-container/ and https://stackoverflow.com/a/30173220
-
-potential script to renew/copy Plex SSL: https://www.npcglib.org/~stathis/blog/2017/05/13/plex-media-server-over-https-with-letsencrypt-certificates/
+[Potential Script to setup, renew and copy SSL for Plex](https://www.npcglib.org/~stathis/blog/2017/05/13/plex-media-server-over-https-with-letsencrypt-certificates/)
 
 
 
