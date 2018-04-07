@@ -1,4 +1,5 @@
 # HTPC Docker Standup
+======
 This is a simple docker-compose configuration to standup a new HTPC. It's based on running on an Ubuntu server, but could easily be adapted for other opertaing systems with Docker support.
 
 It includes the following Services
@@ -52,6 +53,7 @@ This project was heavily inspired by the [MediaBox](https://github.com/tom472/me
 10. ???
 11. Profit.
 
+---
 
 ## Tips and Tricks
 
@@ -63,8 +65,6 @@ This project was heavily inspired by the [MediaBox](https://github.com/tom472/me
 
 [Potential Script to setup, renew and copy SSL for Plex](https://www.npcglib.org/~stathis/blog/2017/05/13/plex-media-server-over-https-with-letsencrypt-certificates/)
 
-
-
 ---
 
 If this project has helped you in anyway, and you'd like to say thanks...
@@ -72,6 +72,7 @@ If this project has helped you in anyway, and you'd like to say thanks...
 [![Donate](https://img.shields.io/badge/Donate-SquareCash-brightgreen.svg)](https://cash.me/$phikai)
 
 ---
+
 # Disclaimer
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
