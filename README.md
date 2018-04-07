@@ -14,7 +14,7 @@ It includes the following Services
 - [Watchtower](https://github.com/v2tec/watchtower) - for automatically updating running containers
 - [NetData](https://my-netdata.io/) - for system resource monitoring
 - [Muximux](https://github.com/mescon/Muximux) - for simple web based management
-- [Duplicati](https://www.duplicati.com/) - Backup Software to connect to your favorite provider
+- [Duplicati](https://www.duplicati.com/) - for backing up data to your favorite provider
 - [Nginx Proxy](https://github.com/jwilder/nginx-proxy) + [Let's Encrypt](https://github.com/JrCs/docker-letsencrypt-nginx-proxy-companion) - for easily accessing services on SSL Enabled Hostnames
 
 This project was heavily inspired by the [MediaBox](https://github.com/tom472/mediabox) project... Many Thanks!
