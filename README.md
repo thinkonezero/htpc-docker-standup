@@ -37,19 +37,20 @@ This project was heavily inspired by the [MediaBox](https://github.com/tom472/me
 
 ### Server Configuration
 1. [Install Ubuntu Server](https://tutorials.ubuntu.com/tutorial/tutorial-install-ubuntu-server) and get it updated - `sudo apt update` then `sudo apt upgrade`
-
 2. If you have existing media on a separate NTFS formatted drive:
  - Mount NTFS Drive w/ Appropriate Permissions, [Link 1](https://askubuntu.com/questions/113733/how-do-i-correctly-mount-a-ntfs-partition-in-etc-fstab#comment684545_113746)
  - `sudo blkid` - Find the block ID of your media drive
  - `sudo mkdir /media/Media` - make the mount point
  - Add to `/etc/fstab`: `UUID=BC6617A366175D88 /media/Media ntfs-3g uid=1000,gid=1000,dmask=022,fmask=133 0 0`
-
 3. [Setup Samba Share](https://help.ubuntu.com/community/How%20to%20Create%20a%20Network%20Share%20Via%20Samba%20Via%20CLI%20%28Command-line%20interface/Linux%20Terminal%29%20-%20Uncomplicated%2C%20Simple%20and%20Brief%20Way%21) (to access media outside of HTPC)
-
 4. [Install Docker](https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-using-the-repository)
-
 5. [Install Docker Compose](https://docs.docker.com/compose/install/#install-compose)
-
+6. Clone Repo `git clone https://github.com/phikai/htpc-docker-standup.git`
+7. Copy Sample Environement File `cp sample.env .env`
+8. Edit `.env` to match your environment
+9. Run Docker Environment `docker-compose up -d`
+10. ???
+11. Profit.
 
 
 ## Tips and Tricks
