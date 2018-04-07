@@ -19,13 +19,15 @@ It includes the following Services
 
 This project was heavily inspired by the [MediaBox](https://github.com/tom472/mediabox) project... Many Thanks!
 
-##Known Issues
-1. Sometimes the Deluge + VPN Container disconnects and can't re-establish a forwarded port connection.
+## Known Issues
+- [ ] Sometimes the Deluge + VPN Container disconnects and can't re-establish a forwarded port connection. 
+- [ ] Plex can't be assigned Hostname + SSL on `Host` Network - [Nginx Reverse Proxy](https://github.com/jwilder/nginx-proxy#multiple-networks)
 
 
-##Install Instructions
 
-###Prerequisites
+## Install Instructions
+
+### Prerequisites
 - [Ubuntu 16.04 LTS](https://www.ubuntu.com/)
 - [VPN Account from PIA](https://www.privateinternetaccess.com/pages/buy-vpn/toz)
 - [Git](https://git-scm.com/)
@@ -33,12 +35,12 @@ This project was heavily inspired by the [MediaBox](https://github.com/tom472/me
 - [Python 2.7](https://www.python.org/)
 - [Docker-Compose](https://docs.docker.com/compose/)
 
-###Server Configuration
+### Server Configuration
 1. Step 1
 Install Ubuntu Server
 `sudo apt update` then `sudo apt upgrade`
 
-#Step 2
+# Step 2
 Mount NTFS Drive w/ Appropriate Permissions
 https://askubuntu.com/questions/113733/how-do-i-correctly-mount-a-ntfs-partition-in-etc-fstab#comment684545_113746
 https://help.ubuntu.com/community/Fstab#ntfs
@@ -47,11 +49,11 @@ https://help.ubuntu.com/community/Fstab#ntfs
 `sudo mkdir /media/Media` - make the mount point
 Add to `/etc/fstab`: `UUID=BC6617A366175D88 /media/Media ntfs-3g uid=1000,gid=1000,dmask=022,fmask=133 0 0`
 
-#Step 3
+# Step 3
 Setup Samba Share (to access media outside of HTPC)
 https://help.ubuntu.com/community/How%20to%20Create%20a%20Network%20Share%20Via%20Samba%20Via%20CLI%20%28Command-line%20interface/Linux%20Terminal%29%20-%20Uncomplicated%2C%20Simple%20and%20Brief%20Way%21
 
-#step 3
+# step 3
 Remove Old Docker
 Pre-Reqs for Media Box (https://github.com/phikai/mediabox#installation)
 Install Docker
@@ -61,7 +63,7 @@ https://docs.docker.com/compose/install/#install-compose
 
 
 
-##Thanks
+## Thanks
 This thread is GOLD: https://lime-technology.com/forums/topic/44108-support-binhex-general/?tab=comments#comment-433613
 
 Removing Old Torrents: https://www.cuttingcords.com/home/2015/2/4/auto-deleting-finished-torrents-from-deluge - DO THIS!!!
@@ -74,7 +76,7 @@ Good for troubleshooting (opening shell in container): http://phase2.github.io/d
 
 potential script to renew/copy Plex SSL: https://www.npcglib.org/~stathis/blog/2017/05/13/plex-media-server-over-https-with-letsencrypt-certificates/
 
-Plex Reverse Proxy issue: https://github.com/jwilder/nginx-proxy#multiple-networks
+
 
 ---
 
