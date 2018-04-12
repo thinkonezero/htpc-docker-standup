@@ -24,7 +24,6 @@ This project was heavily inspired by the [MediaBox](https://github.com/tom472/me
 - [ ] Plex can't be assigned Hostname + SSL on `Host` Network - [Nginx Reverse Proxy](https://github.com/jwilder/nginx-proxy#multiple-networks)
 
 
-
 ## Install Instructions
 
 ### Prerequisites
@@ -69,6 +68,7 @@ This project was heavily inspired by the [MediaBox](https://github.com/tom472/me
 If this project has helped you in anyway, and you'd like to say thanks...
 
 [![Donate](https://img.shields.io/badge/Donate-SquareCash-brightgreen.svg)](https://cash.me/$phikai)
+[![Donate with Bitcoin](https://en.cryptobadges.io/badge/micro/15JCkpHhjjVmWYaTBc2fJn4tcKHEd194gY)](https://en.cryptobadges.io/donate/15JCkpHhjjVmWYaTBc2fJn4tcKHEd194gY)
 
 ---
 
