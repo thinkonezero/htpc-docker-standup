@@ -51,6 +51,33 @@ This project was heavily inspired by the [MediaBox](https://github.com/tom472/me
 10. ???
 11. Profit.
 
+### Environment File
+- `LOCALUSER=` - This is the local user of your linux account and account running docker
+- `HOSTNAME=` - Hostame of the server, can be found by executing `hostname` from command line
+- `IP_ADDRESS=` - Local IP Address of the server, should be static
+- `PUID=` - UID of the local user, can be found by executing `id` from the command line
+- `PGID=` - GID of the local user, can be found by executing `id` from the command line
+- `PMSTOKEN=` - The claim token for the server to obtain a real server token. If not provided, server is will not be automatically logged in. If server is already logged in, this parameter is ignored. You can obtain a claim token to login your server to your plex account by visiting [https://www.plex.tv/claim](https://www.plex.tv/claim)
+- `PIAUNAME=` - Your Private Internet Access username from [PIA VPN](https://www.privateinternetaccess.com/pages/buy-vpn/toz)
+- `PIAPASS=` - Your Private Internet Access password from [PIA VPN](https://www.privateinternetaccess.com/pages/buy-vpn/toz)
+- `VPN_REMOTE=` - The remote server you want to connect to (must support port forwarding), [List of Servers](https://helpdesk.privateinternetaccess.com/hc/en-us/articles/219460187-How-do-I-enable-port-forwarding-on-my-VPN-)
+- `CIDR_ADDRESS=` - IP/netmask entries which allow access to the server without requiring authorization. We recommend you set this only if you do not sign in your server. For example `192.168.1.0/24,172.16.0.0/16` will allow access to the entire `192.168.1.x` range and the `172.16.x.x`
+- `TZ=` - Set the timezone inside the container. For example: `Europe/London`. The complete list can be found here: [https://en.wikipedia.org/wiki/List_of_tz_database_time_zones](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)
+- `PMSTAG=` - Which version of Plex Media Server, available options: `latest`, `plexpass` and `public`. You should use `public` unless you are a Plex Pass account
+- `EMAIL=` - Email address to be used for Let's Encrypt SSL certificate validation - `someone@somewhere.com`
+- `DOMAIN=` - Public domain to use for accessing services via a public domain - `server.domain.com`
+- `WATCHTOWER_EMAIL=` - Email address you'd like Watchtower to notify for any notifications - `someone@somewhere.com`
+- `SMTP_FROM=` - From address that your SMTP server uses to send email - `someone@somewhere.com`
+- `SMTP_SERVER=` - Servername of your SMTP server - `smtp.domain.com`
+- `SMTP_PORT=` - Port that your SMTP server uses to connect - `587`
+- `SMTP_USER=` - Username that your SMTP server uses to authenticate
+- `SMTP_PASS=` - Password for your SMTP user to authenticate
+
+### Email/SMTP Service
+- [Mailgun](https://documentation.mailgun.com/en/latest/quickstart.html) has an excellent QuickStart Guide
+- Check out the sending via [SMTP](https://documentation.mailgun.com/en/latest/quickstart-sending.html#send-via-api)
+- Make sure to also [verify your domain](https://documentation.mailgun.com/en/latest/quickstart-sending.html#verify-your-domain)
+
 ---
 
 ## Tips and Tricks
