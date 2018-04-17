@@ -159,31 +159,6 @@ services:
         command: portainer --schedule @midnight --cleanup
 
     # ----------------------------------------
-    # NETDATA
-    # System Resource Monitoring Service
-    # ----------------------------------------
-    netdata:
-        image: titpetric/netdata
-        container_name: netdata
-        restart: unless-stopped
-        network_mode: 'bridge'
-        ports:
-            - '${IP_ADDRESS}:19999:19999'
-        environment:
-            - PUID=${PUID}
-            - PGID=${PGID}
-            - VIRTUAL_HOST=netdata.${DOMAIN}
-            - LETSENCRYPT_HOST=netdata.${DOMAIN}
-            - LETSENCRYPT_EMAIL=${EMAIL}
-        cap_add:
-            - SYS_PTRACE
-        volumes:
-            - '/proc:/host/proc:ro'
-            - '/sys:/host/sys:ro'
-            - '/etc/localtime:/etc/localtime:ro'
-            - '/var/run/docker.sock:/var/run/docker.sock'
-
-    # ----------------------------------------
     # MUXIMUX
     # Web Frontend for HTPC Management
     # ----------------------------------------
