@@ -206,7 +206,7 @@ services:
     # Pretty Hostname Support for Services
     # ----------------------------------------
     nginx-proxy:
-        image: jwilder/nginx-proxy:alpine
+        image: lroguet/rpi-nginx-proxy
         container_name: nginx-proxy
         restart: unless-stopped
         network_mode: 'bridge'
@@ -228,7 +228,7 @@ services:
     # SSL Support Companion for nginx-proxy
     # ----------------------------------------
     letsencrypt-nginx-proxy-companion:
-        image: jrcs/letsencrypt-nginx-proxy-companion
+        image: alexanderkrause/rpi-letsencrypt-nginx-proxy-companion
         container_name: letsencrypt
         restart: unless-stopped
         network_mode: 'bridge'
