@@ -55,46 +55,27 @@ services:
             - '/etc/localtime:/etc/localtime:ro'
 
     # ----------------------------------------
-    # DELUGEVPN
-    # Deluge Torrent Client + PIA VPN
+    # SABnzbd
+    # Usenet Client
     # ----------------------------------------
-    arch-delugevpn:
-        image: binhex/arch-delugevpn
-        container_name: delugevpn
+    sabnzbd:
+        image: linuxserver/sabnzbd
+        container_name: sabnzbd
         restart: unless-stopped
         network_mode: 'bridge'
         ports:
-            - '${IP_ADDRESS}:8112:8112'
-            - '${IP_ADDRESS}:8118:8118'
-            - '${IP_ADDRESS}:58846:58846'
-            - '${IP_ADDRESS}:58946:58946'
-        cap_add:
-            - NET_ADMIN
+            - '${IP_ADDRESS}:8080:8080'
         environment:
-            - VPN_ENABLED=yes
-            - VPN_USER=${PIAUNAME}
-            - VPN_PASS=${PIAPASS}
-            - VPN_REMOTE=${VPN_REMOTE}
-            - VPN_PORT=1198
-            - VPN_PROTOCOL=udp
-            - VPN_DEVICE_TYPE=tun
-            - VPN_PROV=pia
-            - STRONG_CERTS=no
-            - ENABLE_PRIVOXY=yes
-            - STRICT_PORT_FORWARD=yes
-            - LAN_NETWORK=${CIDR_ADDRESS}
-            - NAME_SERVERS=37.235.1.174,8.8.8.8,37.235.1.177,8.8.4.4
-            - DEBUG=false
             - PUID=${PUID}
             - PGID=${PGID}
-            - VIRTUAL_HOST=deluge.${DOMAIN}
-            - VIRTUAL_PORT=8112
-            - LETSENCRYPT_HOST=deluge.${DOMAIN}
+            - VIRTUAL_HOST=sabnzbd.${DOMAIN}
+            - LETSENCRYPT_HOST=sabnzbd.${DOMAIN}
             - LETSENCRYPT_EMAIL=${EMAIL}
         volumes:
-            - '/media/Media/Torrents:/data'
-            - './delugevpn/config:/config'
-            - '/etc/localtime:/etc/localtime:ro'
+            - './sabnzbd:/config'
+            - '/media/Media/Downloads/Completed:/downloads'
+            - '/media/Media/Downloads/Incomplete:/incomplete-downloads'
+            - '/etc/localtime:/etc/localtime:ro'    
 
     # ----------------------------------------
     # SONARR
@@ -142,29 +123,6 @@ services:
             - '/media/Media/Torrents/Completed:/downloads'
             - '/media/Media/Media/Movies:/movies'
             - '/media/Media/Media/Kid Movies:/kidmovies'
-            - '/etc/localtime:/etc/localtime:ro'
-
-    # ----------------------------------------
-    # JACKETT
-    # RSS/TORZNAB Feed Creator
-    # ----------------------------------------
-    jackett:
-        #image: linuxserver/jackett
-        build: https://github.com/linuxserver/docker-jackett.git
-        container_name: jackett
-        restart: unless-stopped
-        network_mode: 'bridge'
-        ports:
-            - '${IP_ADDRESS}:9117:9117'
-        environment:
-            - PUID=${PUID}
-            - PGID=${PGID}
-            - VIRTUAL_HOST=jackett.${DOMAIN}
-            - LETSENCRYPT_HOST=jackett.${DOMAIN}
-            - LETSENCRYPT_EMAIL=${EMAIL}
-        volumes:
-            - './jackett:/config'
-            - '/media/Media/Torrents/Completed:/downloads'
             - '/etc/localtime:/etc/localtime:ro'
 
     # ----------------------------------------
