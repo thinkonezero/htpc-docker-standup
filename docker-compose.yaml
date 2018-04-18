@@ -20,6 +20,29 @@ version: '2'
 services:
 
     # ----------------------------------------
+    # SABnzbd
+    # Usenet Client
+    # ----------------------------------------
+    sabnzbd:
+        image: lsioarmhf/sabnzbd
+        container_name: sabnzbd
+        restart: unless-stopped
+        network_mode: 'bridge'
+        ports:
+            - '${IP_ADDRESS}:8080:8080'
+        environment:
+            - PUID=${PUID}
+            - PGID=${PGID}
+            - VIRTUAL_HOST=sabnzbd.${DOMAIN}
+            - LETSENCRYPT_HOST=sabnzbd.${DOMAIN}
+            - LETSENCRYPT_EMAIL=${EMAIL}
+        volumes:
+            - './sabnzbd:/config'
+            - '/media/Media/Downloads/Completed:/downloads'
+            - '/media/Media/Downloads/Incomplete:/incomplete-downloads'
+            - '/etc/localtime:/etc/localtime:ro'
+
+    # ----------------------------------------
     # SONARR
     # TV Series Management
     # ----------------------------------------
