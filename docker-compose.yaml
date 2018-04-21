@@ -111,8 +111,6 @@ services:
             - './plexpy:/config'
             - './plex/Library/Application Support/Plex Media Server/Logs:/logs:ro'
             - '/etc/localtime:/etc/localtime:ro'
-        depends_on:
-            - plex
 
     # ----------------------------------------
     # OMBI
