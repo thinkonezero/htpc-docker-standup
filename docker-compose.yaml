@@ -139,7 +139,7 @@ services:
             - LETSENCRYPT_EMAIL=${EMAIL}
         volumes:
             - './radarr:/config'
-            - '/media/Media/Torrents/Completed:/downloads'
+            - '/media/Media/Torrents/Completed:/data/Completed'
             - '/media/Media/Media/Movies:/movies'
             - '/media/Media/Media/Kid Movies:/kidmovies'
             - '/etc/localtime:/etc/localtime:ro'
