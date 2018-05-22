@@ -149,8 +149,7 @@ services:
     # RSS/TORZNAB Feed Creator
     # ----------------------------------------
     jackett:
-        #image: linuxserver/jackett
-        build: https://github.com/linuxserver/docker-jackett.git
+        image: linuxserver/jackett
         container_name: jackett
         restart: unless-stopped
         network_mode: 'bridge'
@@ -166,6 +165,7 @@ services:
             - './jackett:/config'
             - '/media/Media/Torrents/Completed:/downloads'
             - '/etc/localtime:/etc/localtime:ro'
+        command: --NoUpdates
 
     # ----------------------------------------
     # TAUTULLI
