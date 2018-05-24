@@ -165,7 +165,6 @@ services:
             - './jackett:/config'
             - '/media/Media/Torrents/Completed:/downloads'
             - '/etc/localtime:/etc/localtime:ro'
-        command: --NoUpdates
 
     # ----------------------------------------
     # TAUTULLI
