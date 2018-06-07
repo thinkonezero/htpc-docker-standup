@@ -354,8 +354,8 @@ services:
             - '8888:8888'
         environment:
             - INFLUXDB_URL=http://db:8086
-            - VIRTUAL_HOST=speedtest.${DOMAIN}
-            - LETSENCRYPT_HOST=speedtest.${DOMAIN}
+            - VIRTUAL_HOST=chronograf.${DOMAIN}
+            - LETSENCRYPT_HOST=chronograf.${DOMAIN}
             - LETSENCRYPT_EMAIL=${EMAIL}
         volumes:
             - './chronograf:/var/lib/chronograf'
