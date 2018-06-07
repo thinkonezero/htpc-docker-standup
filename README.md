@@ -43,6 +43,7 @@ This project was heavily inspired by the [MediaBox](https://github.com/tom472/me
  - Add to `/etc/fstab`: `UUID=BC6617A366175D88 /media/Media ntfs-3g uid=1000,gid=1000,dmask=022,fmask=133 0 0`
 3. [Setup Samba Share](https://help.ubuntu.com/community/How%20to%20Create%20a%20Network%20Share%20Via%20Samba%20Via%20CLI%20%28Command-line%20interface/Linux%20Terminal%29%20-%20Uncomplicated%2C%20Simple%20and%20Brief%20Way%21) (to access media outside of HTPC)
 4. [Install Docker](https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-using-the-repository)
+ - You'll need to add your user running docker to the `docker` group. See [Post-installation steps for Linux](https://docs.docker.com/install/linux/linux-postinstall/)
 5. [Install Docker Compose](https://docs.docker.com/compose/install/#install-compose)
 6. Clone Repo `git clone https://github.com/phikai/htpc-docker-standup.git`
 7. Copy Sample Environement File `cp sample.env .env`
@@ -58,8 +59,9 @@ This project was heavily inspired by the [MediaBox](https://github.com/tom472/me
 - `PUID=` - UID of the local user, can be found by executing `id` from the command line
 - `PGID=` - GID of the local user, can be found by executing `id` from the command line
 - `PMSTOKEN=` - The claim token for the server to obtain a real server token. If not provided, server is will not be automatically logged in. If server is already logged in, this parameter is ignored. You can obtain a claim token to login your server to your plex account by visiting [https://www.plex.tv/claim](https://www.plex.tv/claim)
-- `PIAUNAME=` - Your Private Internet Access username from [PIA VPN](https://www.privateinternetaccess.com/pages/buy-vpn/toz)
-- `PIAPASS=` - Your Private Internet Access password from [PIA VPN](https://www.privateinternetaccess.com/pages/buy-vpn/toz)
+- `VPNUNAME=` - Your Private Internet Access username from [PIA VPN](https://www.privateinternetaccess.com/pages/buy-vpn/toz)
+- `VPNPASS=` - Your Private Internet Access password from [PIA VPN](https://www.privateinternetaccess.com/pages/buy-vpn/toz)
+- `VPNPROVIDER=` - Your VPN provider, name must match a folder specified in `ovpn`. This defaults to PIA if you copied `sample.env`.
 - `VPN_REMOTE=` - The remote server you want to connect to (must support port forwarding), [List of Servers](https://helpdesk.privateinternetaccess.com/hc/en-us/articles/219460187-How-do-I-enable-port-forwarding-on-my-VPN-)
 - `CIDR_ADDRESS=` - IP/netmask entries which allow access to the server without requiring authorization. We recommend you set this only if you do not sign in your server. For example `192.168.1.0/24,172.16.0.0/16` will allow access to the entire `192.168.1.x` range and the `172.16.x.x`
 - `TZ=` - Set the timezone inside the container. For example: `Europe/London`. The complete list can be found here: [https://en.wikipedia.org/wiki/List_of_tz_database_time_zones](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)

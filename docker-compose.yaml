@@ -56,7 +56,7 @@ services:
 
     # ----------------------------------------
     # DELUGEVPN
-    # Deluge Torrent Client + PIA VPN
+    # Deluge Torrent Client + VPN
     # ----------------------------------------
     arch-delugevpn:
         image: binhex/arch-delugevpn
@@ -72,13 +72,13 @@ services:
             - NET_ADMIN
         environment:
             - VPN_ENABLED=yes
-            - VPN_USER=${PIAUNAME}
-            - VPN_PASS=${PIAPASS}
+            - VPN_USER=${VPNUNAME}
+            - VPN_PASS=${VPNPASS}
             - VPN_REMOTE=${VPN_REMOTE}
             - VPN_PORT=1198
             - VPN_PROTOCOL=udp
             - VPN_DEVICE_TYPE=tun
-            - VPN_PROV=pia
+            - VPN_PROV=${VPNPROVIDER}
             - STRONG_CERTS=no
             - ENABLE_PRIVOXY=yes
             - STRICT_PORT_FORWARD=yes
@@ -94,6 +94,7 @@ services:
         volumes:
             - '/media/Media/Torrents:/data'
             - './delugevpn/config:/config'
+            - './ovpn/${VPNPROVIDER}:/config/openvpn'
             - '/etc/localtime:/etc/localtime:ro'
 
     # ----------------------------------------
