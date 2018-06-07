@@ -326,6 +326,58 @@ services:
             - '/etc/localtime:/etc/localtime:ro'
 
     # ----------------------------------------
+    # InfluxDB
+    # Time Series Database for Speedtest
+    # ----------------------------------------
+    influxdb:
+        image: influxdb 
+        container_name: influxdb
+        restart: unless-stopped
+        network_mode: 'bridge'
+        ports:
+            - '8086:8086'
+        environment:
+            - INFLUXDB_DB=speedtest
+        volumes:
+            - './influxdb:/var/lib/influxdb'
+
+    # ----------------------------------------
+    # Chronograf
+    # Dashboard Tool for Speedtest
+    # ----------------------------------------
+    chronograf:
+        image: chronograf 
+        container_name: chronograf
+        restart: unless-stopped
+        network_mode: 'bridge'
+        ports:
+            - '8888:8888'
+        environment:
+            - INFLUXDB_URL=http://db:8086
+        volumes:
+            - './chronograf:/var/lib/chronograf'
+        links:
+            - influxdb:db
+        depends_on:
+            - influxdb
+
+    # ----------------------------------------
+    # Speedtest
+    # Speedtest-CLI and Post to InfluxDB
+    # ----------------------------------------
+    speedtest:
+        image: phikai/speedtest
+        container_name: speedtest
+        restart: unless-stopped
+        network_mode: 'bridge'
+        environment:
+            - TEST_INTERVAL=5
+        links:
+            - influxdb:db
+        depends_on:
+            - influxdb
+
+    # ----------------------------------------
     # NGINX-PROXY
     # Pretty Hostname Support for Services
     # ----------------------------------------
