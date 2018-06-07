@@ -15,6 +15,9 @@ It includes the following Services
 - [NetData](https://my-netdata.io/) - for system resource monitoring
 - [Muximux](https://github.com/mescon/Muximux) - for simple web based management
 - [Duplicati](https://www.duplicati.com/) - for backing up data to your favorite provider
+- [InfluxDB](https://www.influxdata.com/) - for time series based database storage
+- [Chronograf](https://www.influxdata.com/time-series-platform/chronograf/) - for making pretty dashboards out of the database data
+- [SpeedTest](https://github.com/sivel/speedtest-cli/) - for performing a speedtest and posting data to the database
 - [Nginx Proxy](https://github.com/jwilder/nginx-proxy) + [Let's Encrypt](https://github.com/JrCs/docker-letsencrypt-nginx-proxy-companion) - for easily accessing services on SSL Enabled Hostnames
 
 This project was heavily inspired by the [MediaBox](https://github.com/tom472/mediabox) project... Many Thanks!
@@ -74,6 +77,7 @@ This project was heavily inspired by the [MediaBox](https://github.com/tom472/me
 - `SMTP_PORT=` - Port that your SMTP server uses to connect - `587`
 - `SMTP_USER=` - Username that your SMTP server uses to authenticate
 - `SMTP_PASS=` - Password for your SMTP user to authenticate
+- `SPEEDTEST_INTERVAL=` - Number of seconds between tests to the [Speedtest.net](http://www.speedtest.net/) services
 
 ### Email/SMTP Service
 - [Mailgun](https://documentation.mailgun.com/en/latest/quickstart.html) has an excellent QuickStart Guide
