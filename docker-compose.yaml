@@ -335,7 +335,7 @@ services:
         restart: unless-stopped
         network_mode: 'bridge'
         ports:
-            - '8086:8086'
+            - '${IP_ADDRESS}:8086:8086'
         environment:
             - INFLUXDB_DB=speedtest
         volumes:
@@ -351,7 +351,7 @@ services:
         restart: unless-stopped
         network_mode: 'bridge'
         ports:
-            - '8888:8888'
+            - '${IP_ADDRESS}:8888:8888'
         environment:
             - INFLUXDB_URL=http://db:8086
             - VIRTUAL_HOST=chronograf.${DOMAIN}
