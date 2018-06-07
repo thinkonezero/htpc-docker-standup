@@ -354,6 +354,9 @@ services:
             - '8888:8888'
         environment:
             - INFLUXDB_URL=http://db:8086
+            - VIRTUAL_HOST=speedtest.${DOMAIN}
+            - LETSENCRYPT_HOST=speedtest.${DOMAIN}
+            - LETSENCRYPT_EMAIL=${EMAIL}
         volumes:
             - './chronograf:/var/lib/chronograf'
         links:
@@ -371,7 +374,7 @@ services:
         restart: unless-stopped
         network_mode: 'bridge'
         environment:
-            - TEST_INTERVAL=5
+            - TEST_INTERVAL=${SPEEDTEST_INTERVAL}
         links:
             - influxdb:db
         depends_on:
