@@ -4,7 +4,7 @@ This is a simple docker-compose configuration to standup a new HTPC. It's based 
 It includes the following Services
 
 - [Plex Media Server](https://www.plex.tv/) - for managing media and serving files to Plex Clients
-- [Deluge](https://deluge-torrent.org/) + [Private Internet Access VPN](https://www.privateinternetaccess.com/pages/buy-vpn/toz) - for downloading torrents... "safely"
+- [Deluge](https://deluge-torrent.org/) + [Private Internet Access](https://www.privateinternetaccess.com/pages/buy-vpn/toz) or [TorGuard](https://torguard.net/aff.php?aff=4350) - for downloading torrents... "safely"
 - [Sonarr](https://sonarr.tv/) - for TV Series Management
 - [Radarr](https://radarr.video/) - for Movie Management
 - [Jackett](https://github.com/Jackett/Jackett) - for Torrent Tracker feeds
@@ -31,7 +31,7 @@ This project was heavily inspired by the [MediaBox](https://github.com/tom472/me
 
 ### Prerequisites
 - [Ubuntu 16.04 LTS](https://www.ubuntu.com/)
-- [VPN Account from PIA](https://www.privateinternetaccess.com/pages/buy-vpn/toz)
+- VPN Account from [PIA](https://www.privateinternetaccess.com/pages/buy-vpn/toz) or [TorGuard](https://torguard.net/aff.php?aff=4350)
 - [Git](https://git-scm.com/)
 - [Docker](https://www.docker.com/)
 - [Python 2.7](https://www.python.org/)
@@ -62,10 +62,10 @@ This project was heavily inspired by the [MediaBox](https://github.com/tom472/me
 - `PUID=` - UID of the local user, can be found by executing `id` from the command line
 - `PGID=` - GID of the local user, can be found by executing `id` from the command line
 - `PMSTOKEN=` - The claim token for the server to obtain a real server token. If not provided, server is will not be automatically logged in. If server is already logged in, this parameter is ignored. You can obtain a claim token to login your server to your plex account by visiting [https://www.plex.tv/claim](https://www.plex.tv/claim)
-- `VPNUNAME=` - Your Private Internet Access username from [PIA VPN](https://www.privateinternetaccess.com/pages/buy-vpn/toz)
-- `VPNPASS=` - Your Private Internet Access password from [PIA VPN](https://www.privateinternetaccess.com/pages/buy-vpn/toz)
-- `VPNPROVIDER=` - Your VPN provider, name must match a folder specified in `ovpn`. This defaults to PIA if you copied `sample.env`.
-- `VPN_REMOTE=` - The remote server you want to connect to (must support port forwarding), [List of Servers](https://helpdesk.privateinternetaccess.com/hc/en-us/articles/219460187-How-do-I-enable-port-forwarding-on-my-VPN-)
+- `VPNUNAME=` - Your VPN username from [PIA](https://www.privateinternetaccess.com/pages/buy-vpn/toz) or [TorGuard](https://torguard.net/aff.php?aff=4350)
+- `VPNPASS=` - Your VPN password from [PIA](https://www.privateinternetaccess.com/pages/buy-vpn/toz) or [TorGuard](https://torguard.net/aff.php?aff=4350)
+- `VPNPROVIDER=` - Your VPN provider, name must match a folder specified in `ovpn`. This defaults to `pia` if you copied `sample.env`.
+- `VPN_REMOTE=` - The remote server you want to connect to (must support port forwarding)
 - `CIDR_ADDRESS=` - IP/netmask entries which allow access to the server without requiring authorization. We recommend you set this only if you do not sign in your server. For example `192.168.1.0/24,172.16.0.0/16` will allow access to the entire `192.168.1.x` range and the `172.16.x.x`
 - `TZ=` - Set the timezone inside the container. For example: `Europe/London`. The complete list can be found here: [https://en.wikipedia.org/wiki/List_of_tz_database_time_zones](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)
 - `PMSTAG=` - Which version of Plex Media Server, available options: `latest`, `plexpass` and `public`. You should use `public` unless you are a Plex Pass account
@@ -88,6 +88,7 @@ This project was heavily inspired by the [MediaBox](https://github.com/tom472/me
 
 ## Tips and Tricks
 
+- [PIA List of Servers](https://helpdesk.privateinternetaccess.com/hc/en-us/articles/219460187-How-do-I-enable-port-forwarding-on-my-VPN-) that support port forwarding
 - [Deluge + PIA FAQ](https://lime-technology.com/forums/topic/44108-support-binhex-general/?tab=comments#comment-433613)
 - [Removing Old/Completed Torrents from Deluge](https://www.cuttingcords.com/home/2015/2/4/auto-deleting-finished-torrents-from-deluge)
 - [Create Series Folder in Sonarr](https://forums.sonarr.tv/t/adding-new-series-path-issues/2751/2)
@@ -102,6 +103,8 @@ If this project has helped you in anyway, and you'd like to say thanks...
 
 [![Donate](https://img.shields.io/badge/Donate-SquareCash-brightgreen.svg)](https://cash.me/$phikai)
 [![Donate with Bitcoin](https://en.cryptobadges.io/badge/micro/15JCkpHhjjVmWYaTBc2fJn4tcKHEd194gY)](https://en.cryptobadges.io/donate/15JCkpHhjjVmWYaTBc2fJn4tcKHEd194gY)
+
+_AFFILIATE DISCLOSURE: You can also support this project by purchasing a VPN Subscription via one of the links in this README._
 
 ---
 
