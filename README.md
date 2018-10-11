@@ -1,5 +1,5 @@
 # HTPC Docker Standup
-*PSA*: Project has moved to [gitlab](https://gitlab.com/phikai/docker-speedtest). This repo will remain on Github as a mirror.
+*PSA*: Project has moved to [gitlab](https://gitlab.com/phikai/htpc-docker-standup). This repo will remain on Github as a mirror.
 ---
 This is a simple docker-compose configuration to standup a new HTPC. It's based on running on an Ubuntu server, but could easily be adapted for other opertaing systems with Docker support.
 
