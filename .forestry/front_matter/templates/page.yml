@@ -1,0 +1,24 @@
+---
+label: Page
+hide_body: false
+is_partial: false
+fields:
+- name: layout
+  label: Layout
+  type: text
+  hidden: true
+  default: page
+- name: title
+  label: Title
+  type: text
+  hidden: false
+  default: ''
+  description: Add page title here
+- type: datetime
+  name: date
+  label: Date
+  config:
+    required: false
+  description: Add publishing date here
+pages:
+- content/about.md

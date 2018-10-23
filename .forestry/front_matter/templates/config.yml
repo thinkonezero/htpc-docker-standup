@@ -1,0 +1,56 @@
+---
+label: Config
+hide_body: true
+is_partial: false
+fields:
+- name: title
+  label: Title
+  type: text
+  hidden: false
+  default: My New Hugo Site
+  description: Enter your site title here.
+  config:
+    required: true
+- name: baseURL
+  label: Baseurl
+  type: text
+  hidden: false
+  default: http://example.com/
+  description: Enter your URL here (e.g. http://your-site.com/)
+  config:
+    required: true
+- name: languageCode
+  label: Languagecode
+  type: text
+  hidden: false
+  default: en-us
+  description: Choose your language code. A list of available codes can be found at
+    http://www.rssboard.org/rss-language-codes
+  config:
+    required: true
+- type: field_group
+  name: params
+  label: Additional Settings
+  fields:
+  - type: text
+    name: themeColor
+    label: Theme Color (optional)
+    description: There are currently eight theme colors available (e.g. theme-base-09,
+      theme-base-0b, theme-base-0e etc.). More information on theme colors are available
+      at https://github.com/spf13/hyde
+  - type: boolean
+    name: layoutReverse
+    label: Reverse Layout
+    description: ''
+  - type: text
+    name: disqusShortname
+    label: Disqus Shortname (optional)
+    description: Add commenting function by creating a disqus account and adding your
+      shortname here. Sign up for free at https://disqus.com/profile/signup/
+  - type: text
+    name: googleAnalytics
+    label: Google Analytics Tracking Code (optional)
+    description: Add analytics by adding your Google Analytics tracking code here.
+      More information on the tracking code at https://support.google.com/analytics/answer/7372977?ctx=glossary
+pages:
+- config.toml

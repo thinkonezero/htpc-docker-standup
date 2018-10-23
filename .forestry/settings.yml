@@ -4,14 +4,31 @@ auto_deploy: false
 admin_path: ''
 webhook_url: 
 sections:
+- type: document
+  path: README.md
+  label: Welcome - Start Here!
+  read_only: true
+- type: document
+  path: config.toml
+  label: Site Configuration
+- type: directory
+  path: content/posts
+  label: Posts
+  create: all
+  match: "**/*"
+  new_doc_ext: md
+  templates:
+  - post
 - type: directory
   path: content
   label: Pages
-  create: all
+  create: documents
   match: "*"
+  templates:
+  - page
 upload_dir: static/uploads
 public_path: "/uploads"
 front_matter_path: ''
 use_front_matter_path: false
 file_template: ":filename:"
-version: 0.49.2
+version: '0.49.2'

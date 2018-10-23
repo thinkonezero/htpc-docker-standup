@@ -1,0 +1,25 @@
+---
+label: Post
+hide_body: false
+is_partial: false
+fields:
+- name: layout
+  label: Layout
+  type: text
+  hidden: true
+  default: post
+- name: title
+  label: Title
+  type: text
+  hidden: false
+  default: ''
+  description: Add post title here
+- name: date
+  label: Date
+  type: datetime
+  hidden: false
+  default: ''
+  description: Add publishing date here
+pages:
+- content/posts/example-content.md
+- content/posts/introducing-hyde.md
