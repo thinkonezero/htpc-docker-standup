@@ -1,7 +1,9 @@
 baseURL = "https://phikai.gitlab.io/htpc-docker-standup/"
 languageCode = "en-us"
-title = "My New Hugo Site"
 theme = "hyde"
-
+title = "HTPC Standup on Docker"
 [params]
-	themeColor = "theme-base-0c"
+disqusShortname = ""
+googleAnalytics = ""
+layoutReverse = false
+themeColor = "theme-base-0c"

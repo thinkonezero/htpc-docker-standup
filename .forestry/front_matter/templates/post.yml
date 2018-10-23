@@ -21,5 +21,5 @@ fields:
   default: ''
   description: Add publishing date here
 pages:
-- content/posts/example-content.md
 - content/posts/introducing-hyde.md
+- content/posts/example-content.md

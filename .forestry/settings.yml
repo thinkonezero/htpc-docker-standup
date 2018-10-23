@@ -31,4 +31,4 @@ public_path: "/uploads"
 front_matter_path: ''
 use_front_matter_path: false
 file_template: ":filename:"
-version: '0.49.2'
+version: 0.49.2
