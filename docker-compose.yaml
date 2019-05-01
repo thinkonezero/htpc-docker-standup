@@ -330,7 +330,7 @@ services:
     # Time Series Database for Speedtest
     # ----------------------------------------
     influxdb:
-        image: influxdb 
+        image: influxdb
         container_name: influxdb
         restart: unless-stopped
         network_mode: 'bridge'
@@ -346,7 +346,7 @@ services:
     # Dashboard Tool for Speedtest
     # ----------------------------------------
     chronograf:
-        image: chronograf 
+        image: chronograf
         container_name: chronograf
         restart: unless-stopped
         network_mode: 'bridge'
