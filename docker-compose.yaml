@@ -412,6 +412,10 @@ services:
         ports:
             - '${IP_ADDRESS}:3000:3000'
         environment:
+            - GF_PATHS_DATA=/config/data
+            - GF_PATHS_LOGS=/config/logs
+            - GF_PATHS_PLUGINS=/config/plugins
+            - GF_INSTALL_PLUGINS=grafana-piechart-panel,grafana-worldmap-panel
             - INFLUXDB_URL=http://db:8086
             - VIRTUAL_HOST=grafana.${DOMAIN}
             - LETSENCRYPT_HOST=grafana.${DOMAIN}
