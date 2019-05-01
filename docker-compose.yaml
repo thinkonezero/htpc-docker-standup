@@ -327,7 +327,7 @@ services:
 
     # ----------------------------------------
     # InfluxDB
-    # Time Series Database for Speedtest
+    # Time Series Database
     # ----------------------------------------
     influxdb:
         image: influxdb
@@ -337,7 +337,7 @@ services:
         ports:
             - '${IP_ADDRESS}:8086:8086'
         environment:
-            - INFLUXDB_DB=speedtest
+            - INFLUXDB_DB: speedtest; CREATE DATABASE varken;
         volumes:
             - './influxdb:/var/lib/influxdb'
 
@@ -375,6 +375,49 @@ services:
         network_mode: 'bridge'
         environment:
             - TEST_INTERVAL=${SPEEDTEST_INTERVAL}
+        links:
+            - influxdb:db
+        depends_on:
+            - influxdb
+
+    # ----------------------------------------
+    # Varken
+    # Standalone Plex Data Aggeregator
+    # ----------------------------------------
+    varken:
+        image: boerderij/varken
+        container_name: varken
+        restart: unless-stopped
+        network_mode: 'bridge'
+        environment:
+            - PUID=${PUID}
+            - PGID=${PGID}
+        volumes:
+            - './varken:/config'
+            - '/etc/localtime:/etc/localtime:ro'
+        links:
+            - influxdb:db
+        depends_on:
+            - influxdb
+
+    # ----------------------------------------
+    # Grafana
+    # Frontend for Varken
+    # ----------------------------------------
+    grafana:
+        image: grafana/grafana
+        container_name: grafana
+        restart: unless-stopped
+        network_mode: 'bridge'
+        ports:
+            - '${IP_ADDRESS}:3000:3000'
+        environment:
+            - INFLUXDB_URL=http://db:8086
+            - VIRTUAL_HOST=grafana.${DOMAIN}
+            - LETSENCRYPT_HOST=grafana.${DOMAIN}
+            - LETSENCRYPT_EMAIL=${EMAIL}
+        volumes:
+            - './grafana:/config'
         links:
             - influxdb:db
         depends_on:
