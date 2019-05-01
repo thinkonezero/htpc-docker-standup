@@ -411,10 +411,8 @@ services:
         network_mode: 'bridge'
         ports:
             - '${IP_ADDRESS}:3000:3000'
-        user: ${PUID}
+        user: "0"
         environment:
-            - PUID=${PUID}
-            - PGID=${PGID}
             - GF_PATHS_DATA=/config/data
             - GF_PATHS_LOGS=/config/logs
             - GF_PATHS_PLUGINS=/config/plugins
