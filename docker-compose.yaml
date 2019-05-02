@@ -417,7 +417,11 @@ services:
             - GF_PATHS_LOGS=/config/logs
             - GF_PATHS_PLUGINS=/config/plugins
             - GF_INSTALL_PLUGINS=grafana-piechart-panel,grafana-worldmap-panel
-            - INFLUXDB_URL=http://db:8086
+            - GF_SMTP_ENABLED=true
+            - GF_SMTP_HOST="${SMTP_SERVER}:${SMTP_PORT}"
+            - GF_SMTP_USER=${SMTP_USER}
+            - GF_SMTP_PASSWORD=${SMTP_PASS}
+            - GF_SMTP_FROM_ADDRESS=${SMTP_FROM}
             - VIRTUAL_HOST=grafana.${DOMAIN}
             - LETSENCRYPT_HOST=grafana.${DOMAIN}
             - LETSENCRYPT_EMAIL=${EMAIL}
