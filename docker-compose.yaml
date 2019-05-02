@@ -359,8 +359,6 @@ services:
             - LETSENCRYPT_EMAIL=${EMAIL}
         volumes:
             - './chronograf:/var/lib/chronograf'
-        links:
-            - influxdb:db
         depends_on:
             - influxdb
 
@@ -375,8 +373,6 @@ services:
         network_mode: 'bridge'
         environment:
             - TEST_INTERVAL=${SPEEDTEST_INTERVAL}
-        links:
-            - influxdb:db
         depends_on:
             - influxdb
 
@@ -395,8 +391,6 @@ services:
         volumes:
             - './varken:/config'
             - '/etc/localtime:/etc/localtime:ro'
-        links:
-            - influxdb:db
         depends_on:
             - influxdb
 
@@ -423,8 +417,6 @@ services:
             - LETSENCRYPT_EMAIL=${EMAIL}
         volumes:
             - './grafana:/config'
-        links:
-            - influxdb:db
         depends_on:
             - influxdb
 
