@@ -533,8 +533,8 @@ services:
         command:
             - --docker
             - --api
-            - --entryPoints='Name:https Address::443 TLS'
-            - --entryPoints='Name:http Address::80 Redirect.EntryPoint:https'
+            - "--entryPoints=Name:https Address::443 TLS"
+            - "--entryPoints=Name:http Address::80 Redirect.EntryPoint:https"
             - --acme.entrypoint=https 
             - --acme=true 
             - --acme.domains='${DOMAIN}'
