@@ -533,6 +533,7 @@ services:
         command:
             - --docker
             - --api
+            - --loglevel=debug
             - "--entryPoints=Name:https Address::443 TLS"
             - "--entryPoints=Name:http Address::80 Redirect.EntryPoint:https"
             - --acme.entrypoint=https 
