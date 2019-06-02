@@ -433,44 +433,32 @@ services:
             - influxdb
 
     # ----------------------------------------
-    # NGINX-PROXY
-    # Pretty Hostname Support for Services
+    # TRAEFIK
+    # Reverse Proxy + SSL Support
     # ----------------------------------------
-    nginx-proxy:
-        image: jwilder/nginx-proxy:alpine
-        container_name: nginx-proxy
+    traefik:
+        image: traefik
+        container_name: traefik
         restart: unless-stopped
-        network_mode: 'bridge'
         ports:
             - '80:80'
             - '443:443'
-        environment:
-            - PUID=${PUID}
-            - PGID=${PGID}
+            - '8080:8080'
         volumes:
-            - './nginx-proxy/etc/nginx/vhost.d:/etc/nginx/vhost.d'
-            - './nginx-proxy/usr/share/nginx/html:/usr/share/nginx/html'
-            - './letsencrypt/certs:/etc/nginx/certs:ro'
-            - '/etc/localtime:/etc/localtime:ro'
-            - '/var/run/docker.sock:/tmp/docker.sock:ro'
+            - '/var/run/docker.sock:/var/run/docker.sock'
+            - './traefik/traefik.toml:/traefik.toml'
+            - './traefik/acme.json:/acme.json'
+        networks:
+            - web
 
-    # ----------------------------------------
-    # LETS ENCRYPT
-    # SSL Support Companion for nginx-proxy
-    # ----------------------------------------
-    letsencrypt-nginx-proxy-companion:
-        image: jrcs/letsencrypt-nginx-proxy-companion
-        container_name: letsencrypt
-        restart: unless-stopped
-        network_mode: 'bridge'
-        environment:
-            - PUID=${PUID}
-            - PGID=${PGID}
-        volumes:
-            - './letsencrypt/certs:/etc/nginx/certs:rw'
-            - '/etc/localtime:/etc/localtime:ro'
-            - '/var/run/docker.sock:/var/run/docker.sock:ro'
-        volumes_from:
-            - 'nginx-proxy'
-        depends_on:
-            - 'nginx-proxy'
+    
+
+########################
+# GLOBAL CONFIGURATION #
+########################
+
+volumes:
+networks:
+    web:
+        external: true
+
