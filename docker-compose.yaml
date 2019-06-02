@@ -529,8 +529,7 @@ services:
             - PGID=${PGID}
         volumes:
             - '/var/run/docker.sock:/var/run/docker.sock'
-            - './traefik/traefik.toml:/traefik.toml'
-            - './traefik/acme.json:/acme.json'
+            - './traefik:/etc/traefik/acme'
         command:
             - --docker
             - --api
@@ -542,7 +541,7 @@ services:
             - --acme.email='${EMAIL}' 
             - --acme.ondemand=true 
             - --acme.onhostrule=true
-            - --acme.storage=acme.json
+            - --acme.storage=etc/traefik/acme/acme.json
             - --docker.watch
         networks:
             - web
