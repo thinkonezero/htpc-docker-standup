@@ -121,8 +121,8 @@ services:
         restart: unless-stopped
         networks:
             - web
-        ports:
-            - '${IP_ADDRESS}:8989:8989'
+        expose:
+            - 8989
         environment:
             - PUID=${PUID}
             - PGID=${PGID}
@@ -153,8 +153,8 @@ services:
         restart: unless-stopped
         networks:
             - web
-        ports:
-            - '${IP_ADDRESS}:7878:7878'
+        expose:
+            - 7878
         environment:
             - PUID=${PUID}
             - PGID=${PGID}
@@ -185,8 +185,8 @@ services:
         restart: unless-stopped
         networks:
             - web
-        ports:
-            - '${IP_ADDRESS}:9117:9117'
+        expose:
+            - 9117
         environment:
             - PUID=${PUID}
             - PGID=${PGID}
@@ -215,8 +215,8 @@ services:
         restart: unless-stopped
         networks:
             - web
-        ports:
-            - '${IP_ADDRESS}:8181:8181'
+        expose:
+            - 8181
         environment:
             - PUID=${PUID}
             - PGID=${PGID}
@@ -247,8 +247,8 @@ services:
         restart: unless-stopped
         networks:
             - web
-        ports:
-            - '${IP_ADDRESS}:3579:3579'
+        expose:
+            - 3579
         environment:
             - PUID=${PUID}
             - PGID=${PGID}
@@ -276,8 +276,8 @@ services:
         restart: unless-stopped
         networks:
             - web
-        ports:
-            - '${IP_ADDRESS}:9000:9000'
+        expose:
+            - 9000
         environment:
             - PUID=${PUID}
             - PGID=${PGID}
@@ -334,8 +334,8 @@ services:
         restart: unless-stopped
         networks:
             - web
-        ports:
-            - '${IP_ADDRESS}:19999:19999'
+        expose:
+            - 19999
         environment:
             - PUID=${PUID}
             - PGID=${PGID}
@@ -367,8 +367,8 @@ services:
         restart: unless-stopped
         networks:
             - web
-        ports:
-            - '${IP_ADDRESS}:8282:80'
+        expose:
+            - 80
         environment:
             - PUID=${PUID}
             - PGID=${PGID}
@@ -378,7 +378,7 @@ services:
         labels:
             - 'traefik.enable=true'
             - 'traefik.docker.network=web'
-            - 'traefik.port=8282'
+            - 'traefik.port=80'
             - 'traefik.frontend.rule=Host:manage.${DOMAIN}'
             - 'traefik.frontend.entryPoints=https'
             - 'traefik.frontend.headers.forceSTSHeader=true'
@@ -395,8 +395,8 @@ services:
         container_name: duplicati
         restart: unless-stopped
         network_mode: 'bridge'
-        ports:
-            - '${IP_ADDRESS}:8200:8200'
+        expose:
+            - 8200
         environment:
             - PUID=${PUID}
             - PGID=${PGID}
@@ -425,8 +425,8 @@ services:
         restart: unless-stopped
         networks:
             - internal
-        ports:
-            - '${IP_ADDRESS}:8086:8086'
+        expose:
+            - 8086
         environment:
             - PUID=${PUID}
             - PGID=${PGID}
@@ -447,8 +447,8 @@ services:
         networks:
             - web
             - internal
-        ports:
-            - '${IP_ADDRESS}:8888:8888'
+        expose:
+            - 8888
         environment:
             - PUID=${PUID}
             - PGID=${PGID}
@@ -519,8 +519,8 @@ services:
         networks:
             - web
             - internal
-        ports:
-            - '${IP_ADDRESS}:3000:3000'
+        expose:
+            - 3000
         user: "0"
         environment:
             - PUID=${PUID}
