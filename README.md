@@ -1,5 +1,7 @@
 # HTPC Docker Standup
-*PSA*: Project has moved to [gitlab](https://gitlab.com/phikai/htpc-docker-standup). This repo will remain on Github as a mirror.
+
+*PSA*: Project has moved to [GitLab](https://gitlab.com/phikai/htpc-docker-standup). This repo will remain on Github as a mirror.
+
 ---
 This is a simple docker-compose configuration to standup a new HTPC. It's based on running on an Ubuntu server, but could easily be adapted for other opertaing systems with Docker support.
 
@@ -20,13 +22,14 @@ It includes the following Services
 - [InfluxDB](https://www.influxdata.com/) - for time series based database storage
 - [Chronograf](https://www.influxdata.com/time-series-platform/chronograf/) - for making pretty dashboards out of the database data
 - [SpeedTest](https://github.com/sivel/speedtest-cli/) - for performing a speedtest and posting data to the database
-- [Nginx Proxy](https://github.com/jwilder/nginx-proxy) + [Let's Encrypt](https://github.com/JrCs/docker-letsencrypt-nginx-proxy-companion) - for easily accessing services on SSL Enabled Hostnames
+- [Varken](https://github.com/Boerderij/Varken) - for aggregating data from the Plex ecosystem into InfluxDB using Grafana for a frontend
+- [Grafana](https://grafana.com/) - for making dashboards out of the Varken Data
+- [Traefik](hhttps://traefik.io/) - Reverse Proxy and SSL Support
 
 This project was heavily inspired by the [MediaBox](https://github.com/tom472/mediabox) project... Many Thanks!
 
 ## Known Issues
 - [ ] Sometimes the Deluge + VPN Container disconnects and can't re-establish a forwarded port connection. 
-- [ ] Plex can't be assigned Hostname + SSL on `Host` Network - [Nginx Reverse Proxy](https://github.com/jwilder/nginx-proxy#multiple-networks)
 
 
 ## Install Instructions
@@ -80,6 +83,7 @@ This project was heavily inspired by the [MediaBox](https://github.com/tom472/me
 - `SMTP_USER=` - Username that your SMTP server uses to authenticate
 - `SMTP_PASS=` - Password for your SMTP user to authenticate
 - `SPEEDTEST_INTERVAL=` - Number of seconds between tests to the [Speedtest.net](http://www.speedtest.net/) services
+- `TRAEFIK_AUTH=` - Basic Auth for the Traefik Admin [htpasswd Generator](http://www.htaccesstools.com/htpasswd-generator/)
 
 ### Email/SMTP Service
 - [Mailgun](https://documentation.mailgun.com/en/latest/quickstart.html) has an excellent QuickStart Guide
