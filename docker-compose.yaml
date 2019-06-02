@@ -538,8 +538,8 @@ services:
             - "--entryPoints=Name:http Address::80 Redirect.EntryPoint:https"
             - --acme.entrypoint=https 
             - --acme=true 
-            - --acme.domains='${DOMAIN}'
-            - --acme.email='${EMAIL}' 
+            - --acme.domains=${DOMAIN}
+            - --acme.email=${EMAIL}
             - --acme.ondemand=true 
             - --acme.onhostrule
             - --acme.httpchallenge
