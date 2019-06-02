@@ -506,5 +506,4 @@ services:
 networks:
     internal:
     web:
-        external: true
 
