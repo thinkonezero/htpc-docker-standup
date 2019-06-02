@@ -525,6 +525,8 @@ services:
         environment:
             - PUID=${PUID}
             - PGID=${PGID}
+            - GF_SERVER_DOMAIN=grafana.${DOMAIN}
+            - GF_SERVER_ROOT_URL=https://grafana.${DOMAIN}
             - GF_PATHS_DATA=/config/data
             - GF_PATHS_LOGS=/config/logs
             - GF_PATHS_PLUGINS=/config/plugins
