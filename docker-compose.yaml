@@ -496,6 +496,7 @@ services:
             - '/var/run/docker.sock:/var/run/docker.sock'
             - './traefik/traefik.toml:/traefik.toml'
             - './traefik/acme.json:/acme.json'
+        command: --docker --api
         networks:
             - web
 
