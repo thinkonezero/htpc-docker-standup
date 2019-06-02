@@ -279,6 +279,8 @@ services:
         networks:
             - internal
         environment:
+            - PUID=${PUID}
+            - PGID=${PGID}
             - TZ=${TZ}
             - WATCHTOWER_NOTIFICATIONS=email
             - WATCHTOWER_NOTIFICATION_EMAIL_FROM=${SMTP_FROM}
@@ -386,6 +388,8 @@ services:
         ports:
             - '${IP_ADDRESS}:8086:8086'
         environment:
+            - PUID=${PUID}
+            - PGID=${PGID}
             - INFLUXDB_DB=speedtest; CREATE DATABASE varken;
         volumes:
             - './influxdb:/var/lib/influxdb'
@@ -406,6 +410,8 @@ services:
         ports:
             - '${IP_ADDRESS}:8888:8888'
         environment:
+            - PUID=${PUID}
+            - PGID=${PGID}
             - INFLUXDB_URL=http://influxdb:8086
         volumes:
             - './chronograf:/var/lib/chronograf'
@@ -431,6 +437,8 @@ services:
         networks:
             - internal
         environment:
+            - PUID=${PUID}
+            - PGID=${PGID}
             - TEST_INTERVAL=${SPEEDTEST_INTERVAL}
         links:
             - influxdb
@@ -477,6 +485,8 @@ services:
             - '${IP_ADDRESS}:3000:3000'
         user: "0"
         environment:
+            - PUID=${PUID}
+            - PGID=${PGID}
             - GF_PATHS_DATA=/config/data
             - GF_PATHS_LOGS=/config/logs
             - GF_PATHS_PLUGINS=/config/plugins
