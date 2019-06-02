@@ -283,6 +283,8 @@ services:
             - '/var/run/docker.sock:/var/run/docker.sock'
             - '/etc/ssl/certs:/etc/ssl/certs'
         command: --schedule @midnight --cleanup
+        labels:
+            - 'traefik.enable=false'
 
     # ----------------------------------------
     # NETDATA
@@ -376,6 +378,8 @@ services:
             - INFLUXDB_DB=speedtest; CREATE DATABASE varken;
         volumes:
             - './influxdb:/var/lib/influxdb'
+        labels:
+            - 'traefik.enable=false'
 
     # ----------------------------------------
     # Chronograf
@@ -420,6 +424,8 @@ services:
             - influxdb
         depends_on:
             - influxdb
+        labels:
+            - 'traefik.enable=false'
 
     # ----------------------------------------
     # Varken
@@ -441,6 +447,8 @@ services:
             - influxdb
         depends_on:
             - influxdb
+        labels:
+            - 'traefik.enable=false'
 
     # ----------------------------------------
     # Grafana
