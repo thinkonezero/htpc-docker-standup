@@ -11,7 +11,7 @@
 ##
 ## Have docker-compose.yml and .env in the same directory to launch the stack
 
-version: '2'
+version: '3'
 
 ######################
 # SERVICES TO LAUNCH #
@@ -27,7 +27,8 @@ services:
         container_name: plex
         image: plexinc/pms-docker:${PMSTAG}
         restart: unless-stopped
-        network_mode: 'host'
+        networks:
+            - web
         ports:
             - '${IP_ADDRESS}:32400:32400/tcp'
             - '${IP_ADDRESS}:3005:3005/tcp'
@@ -53,6 +54,12 @@ services:
             - '/media/Media/Media/Kid Movies:/data/kidmovies'
             - '/media/Media/Media/Kid TV:/data/kidtvshows'
             - '/etc/localtime:/etc/localtime:ro'
+        labels:
+            - 'traefik.enable=true'
+            - 'traefik.docker.network=web'
+            - 'traefik.port=32400'
+            - 'traefik.frontend.rule=Host:plex.${DOMAIN}'
+            - 'traefik.frontend.entryPoints=https'
 
     # ----------------------------------------
     # DELUGEVPN
@@ -62,7 +69,8 @@ services:
         image: binhex/arch-delugevpn
         container_name: delugevpn
         restart: unless-stopped
-        network_mode: 'bridge'
+        networks:
+            - web
         ports:
             - '${IP_ADDRESS}:8112:8112'
             - '${IP_ADDRESS}:8118:8118'
@@ -87,15 +95,21 @@ services:
             - DEBUG=false
             - PUID=${PUID}
             - PGID=${PGID}
-            - VIRTUAL_HOST=deluge.${DOMAIN}
-            - VIRTUAL_PORT=8112
-            - LETSENCRYPT_HOST=deluge.${DOMAIN}
-            - LETSENCRYPT_EMAIL=${EMAIL}
         volumes:
             - '/media/Media/Torrents:/data'
             - './delugevpn/config:/config'
             - './ovpn/${VPNPROVIDER}:/config/openvpn'
             - '/etc/localtime:/etc/localtime:ro'
+        labels:
+            - 'traefik.enable=true'
+            - 'traefik.docker.network=web'
+            - 'traefik.port=8112'
+            - 'traefik.frontend.rule=Host:deluge.${DOMAIN}'
+            - 'traefik.frontend.entryPoints=https'
+            - 'traefik.frontend.headers.forceSTSHeader=true'
+            - 'traefik.frontend.headers.STSSeconds=315360000'
+            - 'traefik.frontend.headers.STSIncludeSubdomains=true'
+            - 'traefik.frontend.headers.STSPreload=true'
 
     # ----------------------------------------
     # SONARR
@@ -105,21 +119,29 @@ services:
         image: linuxserver/sonarr
         container_name: sonarr
         restart: unless-stopped
-        network_mode: 'bridge'
-        ports:
-            - '${IP_ADDRESS}:8989:8989'
+        networks:
+            - web
+        expose:
+            - 8989
         environment:
             - PUID=${PUID}
             - PGID=${PGID}
-            - VIRTUAL_HOST=sonarr.${DOMAIN}
-            - LETSENCRYPT_HOST=sonarr.${DOMAIN}
-            - LETSENCRYPT_EMAIL=${EMAIL}
         volumes:
             - './sonarr:/config'
             - '/media/Media/Torrents/Completed:/data/Completed'
             - '/media/Media/Media/TVShows:/tv'
             - '/media/Media/Media/Kid TV:/kidtv'
             - '/etc/localtime:/etc/localtime:ro'
+        labels:
+            - 'traefik.enable=true'
+            - 'traefik.docker.network=web'
+            - 'traefik.port=8989'
+            - 'traefik.frontend.rule=Host:sonarr.${DOMAIN}'
+            - 'traefik.frontend.entryPoints=https'
+            - 'traefik.frontend.headers.forceSTSHeader=true'
+            - 'traefik.frontend.headers.STSSeconds=315360000'
+            - 'traefik.frontend.headers.STSIncludeSubdomains=true'
+            - 'traefik.frontend.headers.STSPreload=true'
 
     # ----------------------------------------
     # RADARR
@@ -129,21 +151,29 @@ services:
         image: linuxserver/radarr
         container_name: radarr
         restart: unless-stopped
-        network_mode: "bridge"
-        ports:
-            - '${IP_ADDRESS}:7878:7878'
+        networks:
+            - web
+        expose:
+            - 7878
         environment:
             - PUID=${PUID}
             - PGID=${PGID}
-            - VIRTUAL_HOST=radarr.${DOMAIN}
-            - LETSENCRYPT_HOST=radarr.${DOMAIN}
-            - LETSENCRYPT_EMAIL=${EMAIL}
         volumes:
             - './radarr:/config'
             - '/media/Media/Torrents/Completed:/data/Completed'
             - '/media/Media/Media/Movies:/movies'
             - '/media/Media/Media/Kid Movies:/kidmovies'
             - '/etc/localtime:/etc/localtime:ro'
+        labels:
+            - 'traefik.enable=true'
+            - 'traefik.docker.network=web'
+            - 'traefik.port=7878'
+            - 'traefik.frontend.rule=Host:radarr.${DOMAIN}'
+            - 'traefik.frontend.entryPoints=https'
+            - 'traefik.frontend.headers.forceSTSHeader=true'
+            - 'traefik.frontend.headers.STSSeconds=315360000'
+            - 'traefik.frontend.headers.STSIncludeSubdomains=true'
+            - 'traefik.frontend.headers.STSPreload=true'
 
     # ----------------------------------------
     # JACKETT
@@ -153,19 +183,27 @@ services:
         image: linuxserver/jackett
         container_name: jackett
         restart: unless-stopped
-        network_mode: 'bridge'
-        ports:
-            - '${IP_ADDRESS}:9117:9117'
+        networks:
+            - web
+        expose:
+            - 9117
         environment:
             - PUID=${PUID}
             - PGID=${PGID}
-            - VIRTUAL_HOST=jackett.${DOMAIN}
-            - LETSENCRYPT_HOST=jackett.${DOMAIN}
-            - LETSENCRYPT_EMAIL=${EMAIL}
         volumes:
             - './jackett:/config'
             - '/media/Media/Torrents/Completed:/downloads'
             - '/etc/localtime:/etc/localtime:ro'
+        labels:
+            - 'traefik.enable=true'
+            - 'traefik.docker.network=web'
+            - 'traefik.port=9117'
+            - 'traefik.frontend.rule=Host:jackett.${DOMAIN}'
+            - 'traefik.frontend.entryPoints=https'
+            - 'traefik.frontend.headers.forceSTSHeader=true'
+            - 'traefik.frontend.headers.STSSeconds=315360000'
+            - 'traefik.frontend.headers.STSIncludeSubdomains=true'
+            - 'traefik.frontend.headers.STSPreload=true'
 
     # ----------------------------------------
     # TAUTULLI
@@ -175,21 +213,29 @@ services:
         image: linuxserver/tautulli
         container_name: plexpy
         restart: unless-stopped
-        network_mode: 'bridge'
-        ports:
-            - '${IP_ADDRESS}:8181:8181'
+        networks:
+            - web
+        expose:
+            - 8181
         environment:
             - PUID=${PUID}
             - PGID=${PGID}
-            - VIRTUAL_HOST=plexpy.${DOMAIN}
-            - LETSENCRYPT_HOST=plexpy.${DOMAIN}
-            - LETSENCRYPT_EMAIL=${EMAIL}
         volumes:
             - './plexpy:/config'
             - './plex/Library/Application Support/Plex Media Server/Logs:/logs:ro'
             - '/etc/localtime:/etc/localtime:ro'
         depends_on:
             - plex
+        labels:
+            - 'traefik.enable=true'
+            - 'traefik.docker.network=web'
+            - 'traefik.port=8181'
+            - 'traefik.frontend.rule=Host:plexpy.${DOMAIN}'
+            - 'traefik.frontend.entryPoints=https'
+            - 'traefik.frontend.headers.forceSTSHeader=true'
+            - 'traefik.frontend.headers.STSSeconds=315360000'
+            - 'traefik.frontend.headers.STSIncludeSubdomains=true'
+            - 'traefik.frontend.headers.STSPreload=true'
 
     # ----------------------------------------
     # OMBI
@@ -199,18 +245,26 @@ services:
         image: linuxserver/ombi
         container_name: ombi
         restart: unless-stopped
-        network_mode: 'bridge'
-        ports:
-            - '${IP_ADDRESS}:3579:3579'
+        networks:
+            - web
+        expose:
+            - 3579
         environment:
             - PUID=${PUID}
             - PGID=${PGID}
-            - VIRTUAL_HOST=request.${DOMAIN}
-            - LETSENCRYPT_HOST=request.${DOMAIN}
-            - LETSENCRYPT_EMAIL=${EMAIL}
         volumes:
             - './ombi:/config'
             - '/etc/localtime:/etc/localtime:ro'
+        labels:
+            - 'traefik.enable=true'
+            - 'traefik.docker.network=web'
+            - 'traefik.port=3579'
+            - 'traefik.frontend.rule=Host:request.${DOMAIN}'
+            - 'traefik.frontend.entryPoints=https'
+            - 'traefik.frontend.headers.forceSTSHeader=true'
+            - 'traefik.frontend.headers.STSSeconds=315360000'
+            - 'traefik.frontend.headers.STSIncludeSubdomains=true'
+            - 'traefik.frontend.headers.STSPreload=true'
 
     # ----------------------------------------
     # PORTAINER
@@ -220,19 +274,27 @@ services:
         image: portainer/portainer:latest
         container_name: portainer
         restart: unless-stopped
-        network_mode: 'bridge'
-        ports:
-            - '${IP_ADDRESS}:9000:9000'
+        networks:
+            - web
+        expose:
+            - 9000
         environment:
             - PUID=${PUID}
             - PGID=${PGID}
-            - VIRTUAL_HOST=portainer.${DOMAIN}
-            - LETSENCRYPT_HOST=portainer.${DOMAIN}
-            - LETSENCRYPT_EMAIL=${EMAIL}
         volumes:
             - './portainer:/data'
             - '/var/run/docker.sock:/var/run/docker.sock'
             - '/etc/localtime:/etc/localtime:ro'
+        labels:
+            - 'traefik.enable=true'
+            - 'traefik.docker.network=web'
+            - 'traefik.port=9000'
+            - 'traefik.frontend.rule=Host:portainer.${DOMAIN}'
+            - 'traefik.frontend.entryPoints=https'
+            - 'traefik.frontend.headers.forceSTSHeader=true'
+            - 'traefik.frontend.headers.STSSeconds=315360000'
+            - 'traefik.frontend.headers.STSIncludeSubdomains=true'
+            - 'traefik.frontend.headers.STSPreload=true'
 
     # ----------------------------------------
     # WATCHTOWER
@@ -242,7 +304,11 @@ services:
         image: v2tec/watchtower
         container_name: watchtower
         restart: unless-stopped
+        networks:
+            - internal
         environment:
+            - PUID=${PUID}
+            - PGID=${PGID}
             - TZ=${TZ}
             - WATCHTOWER_NOTIFICATIONS=email
             - WATCHTOWER_NOTIFICATION_EMAIL_FROM=${SMTP_FROM}
@@ -251,11 +317,12 @@ services:
             - WATCHTOWER_NOTIFICATION_EMAIL_SERVER_PORT=${SMTP_PORT}
             - WATCHTOWER_NOTIFICATION_EMAIL_SERVER_USER=${SMTP_USER}
             - WATCHTOWER_NOTIFICATION_EMAIL_SERVER_PASSWORD=${SMTP_PASS}
-        network_mode: 'bridge'
         volumes:
             - '/var/run/docker.sock:/var/run/docker.sock'
             - '/etc/ssl/certs:/etc/ssl/certs'
         command: --schedule @midnight --cleanup
+        labels:
+            - 'traefik.enable=false'
 
     # ----------------------------------------
     # NETDATA
@@ -265,15 +332,13 @@ services:
         image: titpetric/netdata
         container_name: netdata
         restart: unless-stopped
-        network_mode: 'bridge'
-        ports:
-            - '${IP_ADDRESS}:19999:19999'
+        networks:
+            - web
+        expose:
+            - 19999
         environment:
             - PUID=${PUID}
             - PGID=${PGID}
-            - VIRTUAL_HOST=netdata.${DOMAIN}
-            - LETSENCRYPT_HOST=netdata.${DOMAIN}
-            - LETSENCRYPT_EMAIL=${EMAIL}
         cap_add:
             - SYS_PTRACE
         volumes:
@@ -281,6 +346,16 @@ services:
             - '/sys:/host/sys:ro'
             - '/etc/localtime:/etc/localtime:ro'
             - '/var/run/docker.sock:/var/run/docker.sock'
+        labels:
+            - 'traefik.enable=true'
+            - 'traefik.docker.network=web'
+            - 'traefik.port=19999'
+            - 'traefik.frontend.rule=Host:netdata.${DOMAIN}'
+            - 'traefik.frontend.entryPoints=https'
+            - 'traefik.frontend.headers.forceSTSHeader=true'
+            - 'traefik.frontend.headers.STSSeconds=315360000'
+            - 'traefik.frontend.headers.STSIncludeSubdomains=true'
+            - 'traefik.frontend.headers.STSPreload=true'
 
     # ----------------------------------------
     # MUXIMUX
@@ -290,18 +365,26 @@ services:
         image: linuxserver/muximux
         container_name: muximux
         restart: unless-stopped
-        network_mode: 'bridge'
-        ports:
-            - '${IP_ADDRESS}:8080:80'
+        networks:
+            - web
+        expose:
+            - 80
         environment:
             - PUID=${PUID}
             - PGID=${PGID}
-            - VIRTUAL_HOST=manage.${DOMAIN}
-            - LETSENCRYPT_HOST=manage.${DOMAIN}
-            - LETSENCRYPT_EMAIL=${EMAIL}
         volumes:
             - './muximux:/config'
             - '/etc/localtime:/etc/localtime:ro'
+        labels:
+            - 'traefik.enable=true'
+            - 'traefik.docker.network=web'
+            - 'traefik.port=80'
+            - 'traefik.frontend.rule=Host:manage.${DOMAIN}'
+            - 'traefik.frontend.entryPoints=https'
+            - 'traefik.frontend.headers.forceSTSHeader=true'
+            - 'traefik.frontend.headers.STSSeconds=315360000'
+            - 'traefik.frontend.headers.STSIncludeSubdomains=true'
+            - 'traefik.frontend.headers.STSPreload=true'
 
     # ----------------------------------------
     # DUPLICATI
@@ -312,18 +395,25 @@ services:
         container_name: duplicati
         restart: unless-stopped
         network_mode: 'bridge'
-        ports:
-            - '${IP_ADDRESS}:8200:8200'
+        expose:
+            - 8200
         environment:
             - PUID=${PUID}
             - PGID=${PGID}
-            - VIRTUAL_HOST=duplicati.${DOMAIN}
-            - LETSENCRYPT_HOST=duplicati.${DOMAIN}
-            - LETSENCRYPT_EMAIL=${EMAIL}
         volumes:
             - './duplicati:/config'
             - '/media/Media/Media:/media'
             - '/etc/localtime:/etc/localtime:ro'
+        labels:
+            - 'traefik.enable=true'
+            - 'traefik.docker.network=web'
+            - 'traefik.port=8200'
+            - 'traefik.frontend.rule=Host:duplicati.${DOMAIN}'
+            - 'traefik.frontend.entryPoints=https'
+            - 'traefik.frontend.headers.forceSTSHeader=true'
+            - 'traefik.frontend.headers.STSSeconds=315360000'
+            - 'traefik.frontend.headers.STSIncludeSubdomains=true'
+            - 'traefik.frontend.headers.STSPreload=true'
 
     # ----------------------------------------
     # InfluxDB
@@ -333,13 +423,18 @@ services:
         image: influxdb
         container_name: influxdb
         restart: unless-stopped
-        network_mode: 'bridge'
-        ports:
-            - '${IP_ADDRESS}:8086:8086'
+        networks:
+            - internal
+        expose:
+            - 8086
         environment:
+            - PUID=${PUID}
+            - PGID=${PGID}
             - INFLUXDB_DB=speedtest; CREATE DATABASE varken;
         volumes:
             - './influxdb:/var/lib/influxdb'
+        labels:
+            - 'traefik.enable=false'
 
     # ----------------------------------------
     # Chronograf
@@ -349,20 +444,29 @@ services:
         image: chronograf
         container_name: chronograf
         restart: unless-stopped
-        network_mode: 'bridge'
-        ports:
-            - '${IP_ADDRESS}:8888:8888'
+        networks:
+            - web
+            - internal
+        expose:
+            - 8888
         environment:
-            - INFLUXDB_URL=http://db:8086
-            - VIRTUAL_HOST=chronograf.${DOMAIN}
-            - LETSENCRYPT_HOST=chronograf.${DOMAIN}
-            - LETSENCRYPT_EMAIL=${EMAIL}
+            - PUID=${PUID}
+            - PGID=${PGID}
+            - INFLUXDB_URL=http://influxdb:8086
         volumes:
             - './chronograf:/var/lib/chronograf'
-        links:
-            - influxdb
         depends_on:
             - influxdb
+        labels:
+            - 'traefik.enable=true'
+            - 'traefik.docker.network=web'
+            - 'traefik.port=8888'
+            - 'traefik.frontend.rule=Host:chronograf.${DOMAIN}'
+            - 'traefik.frontend.entryPoints=https'
+            - 'traefik.frontend.headers.forceSTSHeader=true'
+            - 'traefik.frontend.headers.STSSeconds=315360000'
+            - 'traefik.frontend.headers.STSIncludeSubdomains=true'
+            - 'traefik.frontend.headers.STSPreload=true'
 
     # ----------------------------------------
     # Speedtest
@@ -372,13 +476,16 @@ services:
         image: phikai/speedtest
         container_name: speedtest
         restart: unless-stopped
-        network_mode: 'bridge'
+        networks:
+            - internal
         environment:
+            - PUID=${PUID}
+            - PGID=${PGID}
             - TEST_INTERVAL=${SPEEDTEST_INTERVAL}
-        links:
-            - influxdb
         depends_on:
             - influxdb
+        labels:
+            - 'traefik.enable=false'
 
     # ----------------------------------------
     # Varken
@@ -388,17 +495,18 @@ services:
         image: boerderij/varken
         container_name: varken
         restart: unless-stopped
-        network_mode: 'bridge'
+        networks:
+            - internal
         environment:
             - PUID=${PUID}
             - PGID=${PGID}
         volumes:
             - './varken:/config'
             - '/etc/localtime:/etc/localtime:ro'
-        links:
-            - influxdb
         depends_on:
             - influxdb
+        labels:
+            - 'traefik.enable=false'
 
     # ----------------------------------------
     # Grafana
@@ -408,11 +516,17 @@ services:
         image: grafana/grafana
         container_name: grafana
         restart: unless-stopped
-        network_mode: 'bridge'
-        ports:
-            - '${IP_ADDRESS}:3000:3000'
+        networks:
+            - web
+            - internal
+        expose:
+            - 3000
         user: "0"
         environment:
+            - PUID=${PUID}
+            - PGID=${PGID}
+            - GF_SERVER_DOMAIN=grafana.${DOMAIN}
+            - GF_SERVER_ROOT_URL=https://grafana.${DOMAIN}
             - GF_PATHS_DATA=/config/data
             - GF_PATHS_LOGS=/config/logs
             - GF_PATHS_PLUGINS=/config/plugins
@@ -422,55 +536,77 @@ services:
             - GF_SMTP_USER=${SMTP_USER}
             - GF_SMTP_PASSWORD=${SMTP_PASS}
             - GF_SMTP_FROM_ADDRESS=${SMTP_FROM}
-            - VIRTUAL_HOST=grafana.${DOMAIN}
-            - LETSENCRYPT_HOST=grafana.${DOMAIN}
-            - LETSENCRYPT_EMAIL=${EMAIL}
         volumes:
             - './grafana:/config'
-        links:
-            - influxdb
         depends_on:
             - influxdb
+        labels:
+            - 'traefik.enable=true'
+            - 'traefik.docker.network=web'
+            - 'traefik.port=3000'
+            - 'traefik.frontend.rule=Host:grafana.${DOMAIN}'
+            - 'traefik.frontend.entryPoints=https'
+            - 'traefik.frontend.headers.forceSTSHeader=true'
+            - 'traefik.frontend.headers.STSSeconds=315360000'
+            - 'traefik.frontend.headers.STSIncludeSubdomains=true'
+            - 'traefik.frontend.headers.STSPreload=true'
 
     # ----------------------------------------
-    # NGINX-PROXY
-    # Pretty Hostname Support for Services
+    # TRAEFIK
+    # Reverse Proxy + SSL Support
     # ----------------------------------------
-    nginx-proxy:
-        image: jwilder/nginx-proxy:alpine
-        container_name: nginx-proxy
+    traefik:
+        image: traefik
+        container_name: traefik
         restart: unless-stopped
-        network_mode: 'bridge'
+        networks:
+            - web
         ports:
             - '80:80'
             - '443:443'
+        expose:
+            - 8080
         environment:
             - PUID=${PUID}
             - PGID=${PGID}
         volumes:
-            - './nginx-proxy/etc/nginx/vhost.d:/etc/nginx/vhost.d'
-            - './nginx-proxy/usr/share/nginx/html:/usr/share/nginx/html'
-            - './letsencrypt/certs:/etc/nginx/certs:ro'
-            - '/etc/localtime:/etc/localtime:ro'
-            - '/var/run/docker.sock:/tmp/docker.sock:ro'
+            - '/var/run/docker.sock:/var/run/docker.sock'
+            - './traefik:/etc/traefik/acme'
+        command:
+            - --docker
+            - --api
+            - --loglevel=debug
+            - "--entryPoints=Name:https Address::443 TLS"
+            - "--entryPoints=Name:http Address::80 Redirect.EntryPoint:https"
+            - --acme.entrypoint=https 
+            - --acme=true 
+            - --acme.domains=${DOMAIN}
+            - --acme.email=${EMAIL}
+            - --acme.ondemand=true 
+            - --acme.onhostrule
+            - --acme.httpchallenge
+            - --acme.httpchallenge.entrypoint=http
+            - --acme.storage=etc/traefik/acme/acme.json
+            - --docker.watch
+        networks:
+            - web
+        labels:
+            - 'traefik.enable=true'
+            - 'traefik.docker.network=web'
+            - 'traefik.port=8080'
+            - 'traefik.frontend.rule=Host:traefik.${DOMAIN}'
+            - 'traefik.frontend.entryPoints=https'
+            - 'traefik.frontend.auth.basic=${TRAEFIK_AUTH}'
+            - 'traefik.frontend.headers.forceSTSHeader=true'
+            - 'traefik.frontend.headers.STSSeconds=315360000'
+            - 'traefik.frontend.headers.STSIncludeSubdomains=true'
+            - 'traefik.frontend.headers.STSPreload=true'
 
-    # ----------------------------------------
-    # LETS ENCRYPT
-    # SSL Support Companion for nginx-proxy
-    # ----------------------------------------
-    letsencrypt-nginx-proxy-companion:
-        image: jrcs/letsencrypt-nginx-proxy-companion
-        container_name: letsencrypt
-        restart: unless-stopped
-        network_mode: 'bridge'
-        environment:
-            - PUID=${PUID}
-            - PGID=${PGID}
-        volumes:
-            - './letsencrypt/certs:/etc/nginx/certs:rw'
-            - '/etc/localtime:/etc/localtime:ro'
-            - '/var/run/docker.sock:/var/run/docker.sock:ro'
-        volumes_from:
-            - 'nginx-proxy'
-        depends_on:
-            - 'nginx-proxy'
+########################
+# GLOBAL CONFIGURATION #
+########################
+
+networks:
+    internal:
+    web:
+
