@@ -59,6 +59,7 @@ services:
             - 'traefik.docker.network=web'
             - 'traefik.port=32400'
             - 'traefik.frontend.rule=Host:plex.${DOMAIN}'
+            - 'traefik.frontend.entryPoints=https'
 
     # ----------------------------------------
     # DELUGEVPN
@@ -104,6 +105,7 @@ services:
             - 'traefik.docker.network=web'
             - 'traefik.port=8112'
             - 'traefik.frontend.rule=Host:deluge.${DOMAIN}'
+            - 'traefik.frontend.entryPoints=https'
 
     # ----------------------------------------
     # SONARR
@@ -131,6 +133,7 @@ services:
             - 'traefik.docker.network=web'
             - 'traefik.port=8989'
             - 'traefik.frontend.rule=Host:sonarr.${DOMAIN}'
+            - 'traefik.frontend.entryPoints=https'
 
     # ----------------------------------------
     # RADARR
@@ -158,6 +161,7 @@ services:
             - 'traefik.docker.network=web'
             - 'traefik.port=7878'
             - 'traefik.frontend.rule=Host:radarr.${DOMAIN}'
+            - 'traefik.frontend.entryPoints=https'
 
     # ----------------------------------------
     # JACKETT
@@ -183,6 +187,7 @@ services:
             - 'traefik.docker.network=web'
             - 'traefik.port=9117'
             - 'traefik.frontend.rule=Host:jackett.${DOMAIN}'
+            - 'traefik.frontend.entryPoints=https'
 
     # ----------------------------------------
     # TAUTULLI
@@ -210,6 +215,7 @@ services:
             - 'traefik.docker.network=web'
             - 'traefik.port=8181'
             - 'traefik.frontend.rule=Host:plexpy.${DOMAIN}'
+            - 'traefik.frontend.entryPoints=https'
 
     # ----------------------------------------
     # OMBI
@@ -234,6 +240,7 @@ services:
             - 'traefik.docker.network=web'
             - 'traefik.port=3579'
             - 'traefik.frontend.rule=Host:request.${DOMAIN}'
+            - 'traefik.frontend.entryPoints=https'
 
     # ----------------------------------------
     # PORTAINER
@@ -259,6 +266,7 @@ services:
             - 'traefik.docker.network=web'
             - 'traefik.port=9000'
             - 'traefik.frontend.rule=Host:portainer.${DOMAIN}'
+            - 'traefik.frontend.entryPoints=https'
 
     # ----------------------------------------
     # WATCHTOWER
@@ -313,6 +321,7 @@ services:
             - 'traefik.docker.network=web'
             - 'traefik.port=19999'
             - 'traefik.frontend.rule=Host:netdata.${DOMAIN}'
+            - 'traefik.frontend.entryPoints=https'
 
     # ----------------------------------------
     # MUXIMUX
@@ -337,6 +346,7 @@ services:
             - 'traefik.docker.network=web'
             - 'traefik.port=8282'
             - 'traefik.frontend.rule=Host:manage.${DOMAIN}'
+            - 'traefik.frontend.entryPoints=https'
 
     # ----------------------------------------
     # DUPLICATI
@@ -361,6 +371,7 @@ services:
             - 'traefik.docker.network=web'
             - 'traefik.port=8200'
             - 'traefik.frontend.rule=Host:duplicati.${DOMAIN}'
+            - 'traefik.frontend.entryPoints=https'
 
     # ----------------------------------------
     # InfluxDB
@@ -407,6 +418,7 @@ services:
             - 'traefik.docker.network=web'
             - 'traefik.port=8888'
             - 'traefik.frontend.rule=Host:chronograf.${DOMAIN}'
+            - 'traefik.frontend.entryPoints=https'
 
     # ----------------------------------------
     # Speedtest
@@ -485,6 +497,7 @@ services:
             - 'traefik.docker.network=web'
             - 'traefik.port=3000'
             - 'traefik.frontend.rule=Host:grafana.${DOMAIN}'
+            - 'traefik.frontend.entryPoints=https'
 
     # ----------------------------------------
     # TRAEFIK
@@ -499,14 +512,22 @@ services:
         ports:
             - '80:80'
             - '443:443'
-            - '8080:8080'
+        expose:
+            - 8080
         volumes:
             - '/var/run/docker.sock:/var/run/docker.sock'
             - './traefik/traefik.toml:/traefik.toml'
             - './traefik/acme.json:/acme.json'
-        command: --docker --api
+        command: --docker --web --entryPoints='Name:https Address::443 TLS' --entryPoints='Name:http Address::80 Redirect.EntryPoint:https' --acme.entrypoint=https --acme=true --acme.domains='${DOMAIN}' --acme.email='${EMAIL}' --acme.ondemand=true acme.onhostrule=true --acme.storage=/certs/acme.json
         networks:
             - web
+        labels:
+            - 'traefik.enable=true'
+            - 'traefik.docker.network=web'
+            - 'traefik.port=8080'
+            - 'traefik.frontend.rule=Host:traefik.${DOMAIN}'
+            - 'traefik.frontend.entryPoints=https'
+            - 'traefik.frontend.auth.basic=${TRAEFIK_AUTH}'
 
 ########################
 # GLOBAL CONFIGURATION #
