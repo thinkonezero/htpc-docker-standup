@@ -499,8 +499,6 @@ services:
         networks:
             - web
 
-    
-
 ########################
 # GLOBAL CONFIGURATION #
 ########################
