@@ -531,7 +531,19 @@ services:
             - '/var/run/docker.sock:/var/run/docker.sock'
             - './traefik/traefik.toml:/traefik.toml'
             - './traefik/acme.json:/acme.json'
-        command: --docker --api --entryPoints='Name:https Address::443 TLS' --entryPoints='Name:http Address::80 Redirect.EntryPoint:https' --acme.entrypoint=https --acme=true --acme.domains='${DOMAIN}' --acme.email='${EMAIL}' --acme.ondemand=true acme.onhostrule=true --acme.storage=/acme.json
+        command:
+            - --docker
+            - --api
+            - --entryPoints='Name:https Address::443 TLS'
+            - --entryPoints='Name:http Address::80 Redirect.EntryPoint:https'
+            - --acme.entrypoint=https 
+            - --acme=true 
+            - --acme.domains='${DOMAIN}'
+            - --acme.email='${EMAIL}' 
+            - --acme.ondemand=true 
+            - --acme.onhostrule=true
+            - --acme.storage=acme.json
+            - --docker.watch
         networks:
             - web
         labels:
