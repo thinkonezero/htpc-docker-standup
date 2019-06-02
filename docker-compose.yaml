@@ -540,7 +540,9 @@ services:
             - --acme.domains='${DOMAIN}'
             - --acme.email='${EMAIL}' 
             - --acme.ondemand=true 
-            - --acme.onhostrule=true
+            - --acme.onhostrule
+            - --acme.httpchallenge
+            - --acme.httpchallenge.entrypoint=http
             - --acme.storage=etc/traefik/acme/acme.json
             - --docker.watch
         networks:
