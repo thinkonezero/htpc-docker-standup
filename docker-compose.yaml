@@ -455,8 +455,6 @@ services:
             - INFLUXDB_URL=http://influxdb:8086
         volumes:
             - './chronograf:/var/lib/chronograf'
-        links:
-            - influxdb
         depends_on:
             - influxdb
         labels:
@@ -484,8 +482,6 @@ services:
             - PUID=${PUID}
             - PGID=${PGID}
             - TEST_INTERVAL=${SPEEDTEST_INTERVAL}
-        links:
-            - influxdb
         depends_on:
             - influxdb
         labels:
@@ -507,8 +503,6 @@ services:
         volumes:
             - './varken:/config'
             - '/etc/localtime:/etc/localtime:ro'
-        links:
-            - influxdb
         depends_on:
             - influxdb
         labels:
@@ -542,8 +536,6 @@ services:
             - GF_SMTP_FROM_ADDRESS=${SMTP_FROM}
         volumes:
             - './grafana:/config'
-        links:
-            - influxdb
         depends_on:
             - influxdb
         labels:
