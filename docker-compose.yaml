@@ -505,7 +505,6 @@ services:
 # GLOBAL CONFIGURATION #
 ########################
 
-volumes:
 networks:
     internal:
     web:
