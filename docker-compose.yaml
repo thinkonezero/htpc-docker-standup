@@ -57,7 +57,7 @@ services:
             - '/etc/localtime:/etc/localtime:ro'
         labels:
             - 'traefik.enable=true'
-            - 'traefik.docker.network=web'
+            - 'traefik.docker.network=${STACK_NAME}_web'
             - 'traefik.port=32400'
             - 'traefik.frontend.rule=Host:plex.${DOMAIN}'
             - 'traefik.frontend.entryPoints=https'
@@ -105,7 +105,7 @@ services:
             - '/etc/localtime:/etc/localtime:ro'
         labels:
             - 'traefik.enable=true'
-            - 'traefik.docker.network=web'
+            - 'traefik.docker.network=${STACK_NAME}_web'
             - 'traefik.port=8112'
             - 'traefik.frontend.rule=Host:deluge.${DOMAIN}'
             - 'traefik.frontend.entryPoints=https'
@@ -138,7 +138,7 @@ services:
             - '/etc/localtime:/etc/localtime:ro'
         labels:
             - 'traefik.enable=true'
-            - 'traefik.docker.network=web'
+            - 'traefik.docker.network=${STACK_NAME}_web'
             - 'traefik.port=8989'
             - 'traefik.frontend.rule=Host:sonarr.${DOMAIN}'
             - 'traefik.frontend.entryPoints=https'
@@ -171,7 +171,7 @@ services:
             - '/etc/localtime:/etc/localtime:ro'
         labels:
             - 'traefik.enable=true'
-            - 'traefik.docker.network=web'
+            - 'traefik.docker.network=${STACK_NAME}_web'
             - 'traefik.port=7878'
             - 'traefik.frontend.rule=Host:radarr.${DOMAIN}'
             - 'traefik.frontend.entryPoints=https'
@@ -202,7 +202,7 @@ services:
             - '/etc/localtime:/etc/localtime:ro'
         labels:
             - 'traefik.enable=true'
-            - 'traefik.docker.network=web'
+            - 'traefik.docker.network=${STACK_NAME}_web'
             - 'traefik.port=9117'
             - 'traefik.frontend.rule=Host:jackett.${DOMAIN}'
             - 'traefik.frontend.entryPoints=https'
@@ -235,7 +235,7 @@ services:
             - plex
         labels:
             - 'traefik.enable=true'
-            - 'traefik.docker.network=web'
+            - 'traefik.docker.network=${STACK_NAME}_web'
             - 'traefik.port=8181'
             - 'traefik.frontend.rule=Host:plexpy.${DOMAIN}'
             - 'traefik.frontend.entryPoints=https'
@@ -265,7 +265,7 @@ services:
             - '/etc/localtime:/etc/localtime:ro'
         labels:
             - 'traefik.enable=true'
-            - 'traefik.docker.network=web'
+            - 'traefik.docker.network=${STACK_NAME}_web'
             - 'traefik.port=3579'
             - 'traefik.frontend.rule=Host:request.${DOMAIN}'
             - 'traefik.frontend.entryPoints=https'
@@ -296,7 +296,7 @@ services:
             - '/etc/localtime:/etc/localtime:ro'
         labels:
             - 'traefik.enable=true'
-            - 'traefik.docker.network=web'
+            - 'traefik.docker.network=${STACK_NAME}_web'
             - 'traefik.port=9000'
             - 'traefik.frontend.rule=Host:portainer.${DOMAIN}'
             - 'traefik.frontend.entryPoints=https'
@@ -358,7 +358,7 @@ services:
             - '/var/run/docker.sock:/var/run/docker.sock'
         labels:
             - 'traefik.enable=true'
-            - 'traefik.docker.network=web'
+            - 'traefik.docker.network=${STACK_NAME}_web'
             - 'traefik.port=19999'
             - 'traefik.frontend.rule=Host:netdata.${DOMAIN}'
             - 'traefik.frontend.entryPoints=https'
@@ -388,7 +388,7 @@ services:
             - '/etc/localtime:/etc/localtime:ro'
         labels:
             - 'traefik.enable=true'
-            - 'traefik.docker.network=web'
+            - 'traefik.docker.network=${STACK_NAME}_web'
             - 'traefik.port=80'
             - 'traefik.frontend.rule=Host:manage.${DOMAIN}'
             - 'traefik.frontend.entryPoints=https'
@@ -419,7 +419,7 @@ services:
             - '/etc/localtime:/etc/localtime:ro'
         labels:
             - 'traefik.enable=true'
-            - 'traefik.docker.network=web'
+            - 'traefik.docker.network=${STACK_NAME}_web'
             - 'traefik.port=8200'
             - 'traefik.frontend.rule=Host:duplicati.${DOMAIN}'
             - 'traefik.frontend.entryPoints=https'
@@ -613,7 +613,7 @@ services:
             - web
         labels:
             - 'traefik.enable=true'
-            - 'traefik.docker.network=web'
+            - 'traefik.docker.network=${STACK_NAME}_web'
             - 'traefik.port=8080'
             - 'traefik.frontend.rule=Host:traefik.${DOMAIN}'
             - 'traefik.frontend.entryPoints=https'
