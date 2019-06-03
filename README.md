@@ -84,6 +84,7 @@ This project was heavily inspired by the [MediaBox](https://github.com/tom472/me
 - `SMTP_PASS=` - Password for your SMTP user to authenticate
 - `SPEEDTEST_INTERVAL=` - Number of seconds between tests to the [Speedtest.net](http://www.speedtest.net/) services
 - `TRAEFIK_AUTH=` - Basic Auth for the Traefik Admin [htpasswd Generator](http://www.htaccesstools.com/htpasswd-generator/)
+- `STACK_NAME=` - This is used to specify the appropriate network Traefik should use. See #13 for details.
 
 ### Email/SMTP Service
 - [Mailgun](https://documentation.mailgun.com/en/latest/quickstart.html) has an excellent QuickStart Guide
