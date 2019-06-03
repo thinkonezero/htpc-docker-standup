@@ -476,7 +476,7 @@ services:
             - influxdb
         labels:
             - 'traefik.enable=true'
-            - 'traefik.docker.network=web'
+            - 'traefik.docker.network=${STACK_NAME}_web'
             - 'traefik.port=8888'
             - 'traefik.frontend.rule=Host:chronograf.${DOMAIN}'
             - 'traefik.frontend.entryPoints=https'
@@ -562,7 +562,7 @@ services:
             - influxdb
         labels:
             - 'traefik.enable=true'
-            - 'traefik.docker.network=web'
+            - 'traefik.docker.network=${STACK_NAME}_web'
             - 'traefik.port=3000'
             - 'traefik.frontend.rule=Host:grafana.${DOMAIN}'
             - 'traefik.frontend.entryPoints=https'
