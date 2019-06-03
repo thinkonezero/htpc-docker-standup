@@ -394,7 +394,8 @@ services:
         image: linuxserver/duplicati
         container_name: duplicati
         restart: unless-stopped
-        network_mode: 'bridge'
+        networks:
+            - web
         expose:
             - 8200
         environment:
