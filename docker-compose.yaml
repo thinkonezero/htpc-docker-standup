@@ -467,9 +467,11 @@ services:
             - TZ=${TZ}
             - PUID=${PUID}
             - PGID=${PGID}
-            - INFLUXDB_URL=http://influxdb:8086
         volumes:
             - './chronograf:/var/lib/chronograf'
+        command:
+            - chronograf
+            - --influxdb-url=http://influxdb:8086
         depends_on:
             - influxdb
         labels:
