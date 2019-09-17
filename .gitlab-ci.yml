@@ -8,7 +8,7 @@ lint yaml:
   before_script: []
   stage: test
   script:
-    - sudo apt-get install yamllint
+    - apt-get install yamllint
     - yamllint docker-compose.yml
 
 docker-compose:
