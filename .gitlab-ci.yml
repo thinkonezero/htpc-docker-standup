@@ -1,7 +1,7 @@
 lint yaml:
   cache: {}
   before_script: []
-  stage: prepare
+  stage: test
   script:
     - yarn install
     - yarn run yamllint
