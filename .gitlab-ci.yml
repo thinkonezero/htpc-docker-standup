@@ -1,19 +1,6 @@
-image: ubuntu:latest
+# https://github.com/tiangolo/docker-with-compose#this-images-solution
+image: tiangolo/docker-with-compose
 
-stages:
- - test
-
-lint yaml:
-  cache: {}
-  before_script: []
-  stage: test
-  script:
-    - apt-get install yamllint
-    - yamllint docker-compose.yml
-
-docker-compose:
-  cache: {}
-  before_script: []
-  stage: test
+docker test:
   script:
     - docker-compose -f docker-compose.yml config
