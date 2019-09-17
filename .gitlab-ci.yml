@@ -1,9 +1,13 @@
 image: ubuntu:latest
 
+stages:
+ - prepare
+ - test
+
 lint yaml:
   cache: {}
   before_script: []
   stage: test
   script:
-    - apt get install yamllint
+    - sudo apt-get install yamllint
     - yamllint docker-compose.yml
