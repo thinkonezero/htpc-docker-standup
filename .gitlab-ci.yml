@@ -1,9 +1,9 @@
-image: node:latest
+image: ubuntu:latest
 
 lint yaml:
   cache: {}
   before_script: []
   stage: test
   script:
-    - yarn install
-    - yarn run yamllint
+    - apt get install yamllint
+    - yamllint docker-compose.yml
