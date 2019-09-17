@@ -111,6 +111,8 @@ If this project has helped you in anyway, and you'd like to say thanks...
 [![Donate](https://img.shields.io/badge/Donate-SquareCash-brightgreen.svg)](https://cash.me/$phikai)
 [![Donate with Bitcoin](https://en.cryptobadges.io/badge/micro/15JCkpHhjjVmWYaTBc2fJn4tcKHEd194gY)](https://en.cryptobadges.io/donate/15JCkpHhjjVmWYaTBc2fJn4tcKHEd194gY)
 
+You can also [gift a Plex Pass](https://www.plex.tv/plex-pass/gift/) subscription as a great way to show your appreciation.
+
 _AFFILIATE DISCLOSURE: You can also support this project by purchasing a VPN Subscription via one of the links in this README._
 
 ---
