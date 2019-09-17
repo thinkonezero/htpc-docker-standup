@@ -1,5 +1,5 @@
 # https://github.com/tiangolo/docker-with-compose#this-images-solution
-image: tiangolo/docker-with-compose
+image: registry.gitlab.com/phikai/docker-with-compose:latest
 
 docker test:
   script:
