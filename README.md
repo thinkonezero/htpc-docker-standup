@@ -73,7 +73,7 @@ This project was heavily inspired by the [MediaBox](https://github.com/tom472/me
 - `VPN_REMOTE=` - The remote server you want to connect to (must support port forwarding)
 - `CIDR_ADDRESS=` - IP/netmask entries which allow access to the server without requiring authorization. We recommend you set this only if you do not sign in your server. For example `192.168.1.0/24,172.16.0.0/16` will allow access to the entire `192.168.1.x` range and the `172.16.x.x`
 - `TZ=` - Set the timezone inside the container. For example: `Europe/London`. The complete list can be found here: [https://en.wikipedia.org/wiki/List_of_tz_database_time_zones](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)
-- `PMSTAG=` - Which version of Plex Media Server, available options: `latest`, `plexpass` and `public`. You should use `public` unless you are a Plex Pass account
+- `PMSTAG=` - Which version of Plex Media Server, available options: `latest`, `plexpass` and `public`. You should use `latest` unless you have special requirements or are a Plex Pass subscriber.
 - `EMAIL=` - Email address to be used for Let's Encrypt SSL certificate validation - `someone@somewhere.com`
 - `DOMAIN=` - Public domain to use for accessing services via a public domain - `server.domain.com`
 - `WATCHTOWER_EMAIL=` - Email address you'd like Watchtower to notify for any notifications - `someone@somewhere.com`
