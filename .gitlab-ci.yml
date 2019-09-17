@@ -1,3 +1,5 @@
+image: node:latest
+
 lint yaml:
   cache: {}
   before_script: []
