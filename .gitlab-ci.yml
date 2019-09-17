@@ -3,4 +3,4 @@ image: tiangolo/docker-with-compose
 
 docker test:
   script:
-    - docker-compose -f docker-compose.yaml config
+    - env $(cat .env.test) docker-compose -f docker-compose.yaml config
