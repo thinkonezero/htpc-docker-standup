@@ -577,7 +577,7 @@ services:
     # Reverse Proxy + SSL Support
     # ----------------------------------------
     traefik:
-        image: traefik
+        image: traefik:v1.7.16
         container_name: traefik
         restart: unless-stopped
         networks:
