@@ -53,7 +53,7 @@ This project was heavily inspired by the [MediaBox](https://github.com/tom472/me
 4. [Install Docker](https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-using-the-repository)
  - You'll need to add your user running docker to the `docker` group. See [Post-installation steps for Linux](https://docs.docker.com/install/linux/linux-postinstall/)
 5. [Install Docker Compose](https://docs.docker.com/compose/install/#install-compose)
-6. Clone Repo `git clone https://github.com/phikai/htpc-docker-standup.git`
+6. Clone Repo `git clone https://gitlab.com/phikai/htpc-docker-standup.git`
 7. Copy Sample Environement File `cp sample.env .env`
 8. Edit `.env` to match your environment
 9. Run Docker Environment `docker-compose up -d`
