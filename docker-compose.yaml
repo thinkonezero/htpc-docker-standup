@@ -609,8 +609,6 @@ services:
             - --acme.httpchallenge.entrypoint=http
             - --acme.storage=etc/traefik/acme/acme.json
             - --docker.watch
-        networks:
-            - web
         labels:
             - 'traefik.enable=true'
             - 'traefik.docker.network=${STACK_NAME}_web'
