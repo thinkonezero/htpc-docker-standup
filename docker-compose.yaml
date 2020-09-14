@@ -27,6 +27,11 @@ services:
         container_name: plex
         image: plexinc/pms-docker:${PMSTAG}
         restart: unless-stopped
+        logging:
+            driver: 'json-file'
+            options:
+                max-file: 5
+                max-size: 10m
         networks:
             - web
         ports:
@@ -70,6 +75,11 @@ services:
         image: binhex/arch-delugevpn
         container_name: delugevpn
         restart: unless-stopped
+        logging:
+            driver: 'json-file'
+            options:
+                max-file: 5
+                max-size: 10m
         networks:
             - web
         ports:
@@ -123,6 +133,11 @@ services:
         image: linuxserver/sonarr
         container_name: sonarr
         restart: unless-stopped
+        logging:
+            driver: 'json-file'
+            options:
+                max-file: 5
+                max-size: 10m
         networks:
             - web
         expose:
@@ -156,6 +171,11 @@ services:
         image: linuxserver/radarr
         container_name: radarr
         restart: unless-stopped
+        logging:
+            driver: 'json-file'
+            options:
+                max-file: 5
+                max-size: 10m
         networks:
             - web
         expose:
@@ -189,6 +209,11 @@ services:
         image: linuxserver/jackett
         container_name: jackett
         restart: unless-stopped
+        logging:
+            driver: 'json-file'
+            options:
+                max-file: 5
+                max-size: 10m
         networks:
             - web
         expose:
@@ -220,6 +245,11 @@ services:
         image: linuxserver/tautulli
         container_name: plexpy
         restart: unless-stopped
+        logging:
+            driver: 'json-file'
+            options:
+                max-file: 5
+                max-size: 10m
         networks:
             - web
         expose:
@@ -253,6 +283,11 @@ services:
         image: linuxserver/ombi
         container_name: ombi
         restart: unless-stopped
+        logging:
+            driver: 'json-file'
+            options:
+                max-file: 5
+                max-size: 10m
         networks:
             - web
         expose:
@@ -283,6 +318,11 @@ services:
         image: portainer/portainer:latest
         container_name: portainer
         restart: unless-stopped
+        logging:
+            driver: 'json-file'
+            options:
+                max-file: 5
+                max-size: 10m
         networks:
             - web
         expose:
@@ -314,6 +354,11 @@ services:
         image: v2tec/watchtower
         container_name: watchtower
         restart: unless-stopped
+        logging:
+            driver: 'json-file'
+            options:
+                max-file: 5
+                max-size: 10m
         networks:
             - internal
         environment:
@@ -342,6 +387,11 @@ services:
         image: titpetric/netdata
         container_name: netdata
         restart: unless-stopped
+        logging:
+            driver: 'json-file'
+            options:
+                max-file: 5
+                max-size: 10m
         networks:
             - web
         expose:
@@ -376,6 +426,11 @@ services:
         image: linuxserver/muximux
         container_name: muximux
         restart: unless-stopped
+        logging:
+            driver: 'json-file'
+            options:
+                max-file: 5
+                max-size: 10m
         networks:
             - web
         expose:
@@ -406,6 +461,11 @@ services:
         image: linuxserver/duplicati
         container_name: duplicati
         restart: unless-stopped
+        logging:
+            driver: 'json-file'
+            options:
+                max-file: 5
+                max-size: 10m
         networks:
             - web
         expose:
@@ -437,6 +497,11 @@ services:
         image: influxdb
         container_name: influxdb
         restart: unless-stopped
+        logging:
+            driver: 'json-file'
+            options:
+                max-file: 5
+                max-size: 10m
         networks:
             - internal
         expose:
@@ -459,6 +524,11 @@ services:
         image: chronograf
         container_name: chronograf
         restart: unless-stopped
+        logging:
+            driver: 'json-file'
+            options:
+                max-file: 5
+                max-size: 10m
         networks:
             - web
             - internal
@@ -494,6 +564,11 @@ services:
         image: phikai/speedtest
         container_name: speedtest
         restart: unless-stopped
+        logging:
+            driver: 'json-file'
+            options:
+                max-file: 5
+                max-size: 10m
         networks:
             - internal
         environment:
@@ -514,6 +589,11 @@ services:
         image: boerderij/varken
         container_name: varken
         restart: unless-stopped
+        logging:
+            driver: 'json-file'
+            options:
+                max-file: 5
+                max-size: 10m
         networks:
             - internal
         environment:
@@ -536,6 +616,11 @@ services:
         image: grafana/grafana
         container_name: grafana
         restart: unless-stopped
+        logging:
+            driver: 'json-file'
+            options:
+                max-file: 5
+                max-size: 10m
         networks:
             - web
             - internal
@@ -580,6 +665,11 @@ services:
         image: traefik:v1.7.16
         container_name: traefik
         restart: unless-stopped
+        logging:
+            driver: 'json-file'
+            options:
+                max-file: 5
+                max-size: 10m
         networks:
             - web
         ports:
