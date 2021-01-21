@@ -671,8 +671,6 @@ services:
                 max-file: '5'
                 max-size: '10m'
         network_mode: host
-        ports:
-            - '8123:8123'
         expose:
             - 8123
         environment:
@@ -682,16 +680,6 @@ services:
         volumes:
             - './home-assistant:/config'
             - '/etc/localtime:/etc/localtime:ro'
-        labels:
-            - 'traefik.enable=true'
-            - 'traefik.docker.network=${STACK_NAME}_web'
-            - 'traefik.port=8123'
-            - 'traefik.frontend.rule=Host:home-assistant.${DOMAIN}'
-            - 'traefik.frontend.entryPoints=https'
-            - 'traefik.frontend.headers.forceSTSHeader=true'
-            - 'traefik.frontend.headers.STSSeconds=315360000'
-            - 'traefik.frontend.headers.STSIncludeSubdomains=true'
-            - 'traefik.frontend.headers.STSPreload=true'
 
     # ----------------------------------------
     # TRAEFIK
@@ -719,17 +707,18 @@ services:
         volumes:
             - '/var/run/docker.sock:/var/run/docker.sock'
             - './traefik:/etc/traefik/acme'
+            - './traefik/traefik.toml:/traefik.toml'
         command:
             - --docker
             - --api
             - --loglevel=debug
             - "--entryPoints=Name:https Address::443 TLS"
             - "--entryPoints=Name:http Address::80 Redirect.EntryPoint:https"
-            - --acme.entrypoint=https 
-            - --acme=true 
+            - --acme.entrypoint=https
+            - --acme=true
             - --acme.domains=${DOMAIN}
             - --acme.email=${EMAIL}
-            - --acme.ondemand=true 
+            - --acme.ondemand=true
             - --acme.onhostrule
             - --acme.httpchallenge
             - --acme.httpchallenge.entrypoint=http
@@ -756,4 +745,3 @@ services:
 networks:
     internal:
     web:
-
