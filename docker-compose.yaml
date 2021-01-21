@@ -672,6 +672,7 @@ services:
                 max-size: '10m'
         networks:
             - web
+        network_mode: host
         ports:
             - '8123:8123'
         expose:
